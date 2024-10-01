@@ -6,7 +6,7 @@ function App() {
   const homepage = useQuery(api.homepage.get);
   return (
     <div className="App">
-      <h1>AIdentify</h1>
+      <h1>AIdentify!</h1>
       {homepage?.map(({ _id, message }) => <div key={_id}>{message}</div>)}
       
     </div>
