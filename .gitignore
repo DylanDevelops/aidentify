@@ -38,3 +38,5 @@ next-env.d.ts
 # Added stuff
 
 *.DS_Store
+
+.env.local
