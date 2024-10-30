@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#E2E2E2] dark:bg-[rgba(28,_15,_19,_0.75)]`}
       >
         <ConvexClientProvider>
           <ThemeProvider

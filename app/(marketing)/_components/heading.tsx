@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { SignUpButton } from "@clerk/clerk-react";
+import { CopyCheck, GraduationCap, Save, Share } from "lucide-react";
 
 export const Heading = () => {
   return (
@@ -15,6 +16,24 @@ export const Heading = () => {
           Sign up to play
         </Button>
       </SignUpButton>
+      <div className="flex flex-col lg:flex-row flex-wrap justify-center gap-4">
+        <div className="w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem]">
+          <Save className="w-[3.125rem] h-[3.125rem] text-[#1C0F13]" />
+          <p className="pt-2 text-center font-[400] text-[1.25rem]">Save your progress online</p>
+        </div>
+        <div className="w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem]">
+          <Share className="w-[3.125rem] h-[3.125rem]" />
+          <p className="pt-2 text-center font-[400] text-[1.25rem]">Share scores with friends</p>
+        </div>
+        <div className="w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem]">
+          <GraduationCap className="w-[3.125rem] h-[3.125rem]" />
+          <p className="pt-2 text-center font-[400] text-[1.25rem]">Learn important detection skills</p>
+        </div>
+        <div className="w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem]">
+          <CopyCheck className="w-[3.125rem] h-[3.125rem]" />
+          <p className="pt-2 text-center font-[400] text-[1.25rem]">Practice with Images and Text</p>
+        </div>
+      </div>
     </div>
   )
 }
