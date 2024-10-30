@@ -1,19 +1,20 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { SignUpButton } from "@clerk/clerk-react";
 
 export const Heading = () => {
   return (
-    <div className="max-w-3xl space-y-4">
-      <div>
-        <Image className="mx-auto block dark:hidden" src="/logos/Wordmark_Logo.svg" width={500} height={500} alt="AIdentify Logo" />
-        <Image className="mx-auto hidden dark:block" src="/logos/Wordmark_Logo-darkmode.svg" width={500} height={500} alt="AIdentify Logo" />
-      </div>
-      <h3 className="text-base sm:text-xl md:text-2xl font-medium">
-        Thanks for checking out the website!
+    <div className="max-w-md space-y-4">
+      <h1 className="text-[2.8125rem] font-[700]">Learn to identify <span className="font-[400] text-[3.125rem] bg-gradient-to-r from-[#565373] to-[#6E7E85] bg-clip-text text-transparent">AI</span></h1>
+      <h3 className="text-[1.25rem] font-[400]">
+        Through <span className="text-[#6E7E85] text-[1.25rem] font-[700]">images</span>, <span className="text-[#6A6884] text-[1.25rem] font-[700]">text</span>, and more, learn to identify <span className="text-[rgba(28,_15,_19,_0.75)] text-[1.25rem] font-[700]">AI generated content</span> in the real world!
       </h3>
-      <Button onClick={() => alert('COMING SOON')}>View More</Button>
+      <SignUpButton mode="modal">
+        <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[400]">
+          Sign up to play
+        </Button>
+      </SignUpButton>
     </div>
   )
 }
