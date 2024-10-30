@@ -47,10 +47,10 @@ export default function RootLayout({
         <ConvexClientProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
-            storageKey="aidentify-theme"
+            storageKey="aidentify-appearance_theme"
           >
             {children}
           </ThemeProvider>
