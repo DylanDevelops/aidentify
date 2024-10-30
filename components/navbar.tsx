@@ -5,9 +5,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SignInButton } from "@clerk/nextjs";
 import { Logo } from "./Logo";
-import Link from "next/link";
 import { CircleHelp, Settings, Trophy } from "lucide-react";
-import { RankingPodium } from "./ui/icons/ranking-podium";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
