@@ -3,12 +3,24 @@
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { SignInButton } from "@clerk/nextjs";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import { Logo } from "./Logo";
-import { CircleHelp, Settings, Trophy } from "lucide-react";
+import { CircleHelp, Flame, Settings, Trophy } from "lucide-react";
+import { useConvexAuth } from "convex/react";
+import { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
+  const { isAuthenticated, isLoading } = useConvexAuth();
+  const clerkUser = useUser();
+
+  const [isUserLoading, setIsUserLoading] = useState(true);
+  useEffect(() => {
+    if(clerkUser !== undefined) {
+      setIsUserLoading(false);
+    }
+  }, [clerkUser]);
 
   return (
     <>
@@ -19,11 +31,25 @@ export const Navbar = () => {
         <div className="flex justify-between items-center gap-x-2 w-full">
           <div className="mr-2 pt-6 pl-6 pb-2"><Logo clickable={true} href="/" /></div>
           <div className="ml-auto pt-6 pr-6 pb-2 space-x-2 flex items-center">
-            <SignInButton mode="modal">
-              <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[700]">
-                Login
-              </Button>
-            </SignInButton>
+            {!isAuthenticated  && !isLoading && (
+              <SignInButton mode="modal">
+                <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[700]">
+                  Login
+                </Button>
+              </SignInButton>
+            )}
+            {isAuthenticated  && !isLoading && !isUserLoading && (
+              <div className="relative">
+                <div className="absolute left-[-3.5rem] right-1 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-[#B7CECE] to-[#BBBAC6] rounded-[3.125rem] border border-[rgba(110,_126,_133,_0.25)] p-1.5 flex items-center">
+                  <span className="mx-1 text-[1.25rem] text-[#1C0F13]">{0}</span>
+                  <Flame className="h-6 w-6 text-[#1C0F13] fill-[#1C0F13]" />
+                </div>
+                <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11">
+                  <AvatarImage src={clerkUser.user?.imageUrl} />
+                  <AvatarFallback>{clerkUser.user?.username?.[0].toUpperCase() ?? ""}</AvatarFallback>
+                </Avatar>
+              </div>
+            )}
           </div>
         </div>
         <div className="w-full px-6">
