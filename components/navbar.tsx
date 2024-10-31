@@ -12,14 +12,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";
 import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarSeparator, ProfileMenubarTrigger } from "./ui/profile-menubar";
-import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
   const { isAuthenticated, isLoading } = useConvexAuth();
   const clerkUser = useUser();
-  const router = useRouter();
   const { signOut, openUserProfile } = useClerk();
   const { theme, setTheme } = useTheme();
 
@@ -97,12 +95,16 @@ export const Navbar = () => {
                     Home
                   </DropdownMenuItem>
                 </Link>
-                <Link href="/play">
+                <Link href="#" onClick={() => {
+                  alert("Play Page Coming Soon");
+                }}>
                   <DropdownMenuItem>
                     Play
                   </DropdownMenuItem>
                 </Link>
-                <Link href="/about">
+                <Link href="#" onClick={() => {
+                  alert("About Page Coming Soon");
+                }}>
                   <DropdownMenuItem>
                     About
                   </DropdownMenuItem>
@@ -115,10 +117,10 @@ export const Navbar = () => {
               openUserProfile();
             }}><Settings color="#6E7E85" /></Button>
             <Button variant="ghost" size="icon" onClick={() => {
-              router.push("/settings");
+              alert("Help Page Coming Soon")
             }}><CircleHelp color="#6E7E85" /></Button>
             <Button variant="ghost" size="icon" onClick={() => {
-              router.push("/leaderboard");
+              alert("Leaderboard Page Coming Soon")
             }}><Trophy color="#6E7E85" /></Button>
           </div>
         </div>
