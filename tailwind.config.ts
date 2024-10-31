@@ -55,7 +55,23 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+      animation: {
+        float: 'float 6s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%': {
+            transform: 'translateY(var(--initial-translate-y, 0px))',
+          },
+          '50%': {
+            transform: 'translateY(calc(var(--initial-translate-y, 0px) - 20px))',
+          },
+          '100%': {
+            transform: 'translateY(var(--initial-translate-y, 0px))',
+          },
+        },
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")],
