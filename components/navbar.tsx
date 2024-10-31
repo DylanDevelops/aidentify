@@ -3,19 +3,21 @@
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { SignInButton, useUser } from "@clerk/nextjs";
+import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import { Logo } from "./Logo";
-import { CircleHelp, Flame, Menu, Settings, Trophy } from "lucide-react";
+import { CircleHelp, Flame, LogOut, Menu, Settings, Trophy } from "lucide-react";
 import { useConvexAuth } from "convex/react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";
+import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarSeparator, ProfileMenubarTrigger } from "./ui/profile-menubar";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
   const { isAuthenticated, isLoading } = useConvexAuth();
   const clerkUser = useUser();
+  const { signOut, openUserProfile } = useClerk();
 
   const [isUserLoading, setIsUserLoading] = useState(true);
   useEffect(() => {
@@ -42,14 +44,29 @@ export const Navbar = () => {
             )}
             {isAuthenticated  && !isLoading && !isUserLoading && (
               <div className="relative">
-                <div className="absolute left-[-3.5rem] right-1 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-[#B7CECE] to-[#BBBAC6] rounded-[3.125rem] border border-[rgba(110,_126,_133,_0.25)] p-1.5 flex items-center">
-                  <span className="mx-1 text-[1.25rem] text-[#1C0F13]">{0}</span>
-                  <Flame className="h-6 w-6 text-[#1C0F13] fill-[#1C0F13]" />
-                </div>
-                <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11">
-                  <AvatarImage src={clerkUser.user?.imageUrl} />
-                  <AvatarFallback>{clerkUser.user?.username?.[0].toUpperCase() ?? ""}</AvatarFallback>
-                </Avatar>
+                <ProfileMenubar>
+                  <ProfileMenubarMenu>
+                    <ProfileMenubarTrigger>
+                      <div className="absolute left-[-3.5rem] right-1 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-[#B7CECE] to-[#BBBAC6] rounded-[3.125rem] border border-[rgba(110,_126,_133,_0.25)] p-1.5 flex items-center">
+                        <span className="mx-1 text-[1.25rem] text-[#1C0F13]">{0}</span>
+                        <Flame className="h-6 w-6 text-[#1C0F13] fill-[#1C0F13]" />
+                      </div>
+                      <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11">
+                        <AvatarImage src={clerkUser.user?.imageUrl} />
+                        <AvatarFallback>{clerkUser.user?.username?.[0].toUpperCase() ?? ""}</AvatarFallback>
+                      </Avatar>
+                    </ProfileMenubarTrigger>
+                    <ProfileMenubarContent>
+                      <ProfileMenubarItem className="cursor-pointer" onClick={() => {
+                        openUserProfile();
+                      }}><Settings className="h-4 w-4 mr-2" /> Account Settings</ProfileMenubarItem>
+                      <ProfileMenubarSeparator />
+                      <ProfileMenubarItem className="cursor-pointer" onClick={() => {
+                        signOut({ redirectUrl: '/' });
+                      }}><LogOut className="h-4 w-4 mr-2" />Logout</ProfileMenubarItem>
+                    </ProfileMenubarContent>
+                  </ProfileMenubarMenu>
+                </ProfileMenubar>
               </div>
             )}
           </div>
