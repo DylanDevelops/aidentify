@@ -1,4 +1,3 @@
-
 export const Footer = () => {
   return (
     <div className="flex items-center justify-center sm:justify-between w-full p-6 bg-transparent z-5">
