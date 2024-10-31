@@ -13,6 +13,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import Link from "next/link";
 import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarSeparator, ProfileMenubarTrigger } from "./ui/profile-menubar";
 import { useTheme } from "next-themes";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
@@ -20,6 +21,7 @@ export const Navbar = () => {
   const clerkUser = useUser();
   const { signOut, openUserProfile } = useClerk();
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
 
   const [isUserLoading, setIsUserLoading] = useState(true);
   useEffect(() => {
@@ -27,6 +29,8 @@ export const Navbar = () => {
       setIsUserLoading(false);
     }
   }, [clerkUser]);
+
+  const pathname = usePathname();
 
   return (
     <>
@@ -78,9 +82,24 @@ export const Navbar = () => {
         </div>
         <div className="flex justify-between items-center py-2 px-6">
           <div className="hidden md:flex justify-start space-x-1 py-2 px-6">
-            <Button variant="ghost" className="text-[1.25rem] text-[#6E7E85] font-[700]">Home</Button>
-            <Button variant="ghost" className="text-[1.25rem] text-[#6E7E85] font-[400]">Play</Button>
-            <Button variant="ghost" className="text-[1.25rem] text-[#6E7E85] font-[400]">About</Button>
+            <Button variant="ghost" className={cn(
+              "text-[1.25rem] text-[#6E7E85] font-[400]",
+              pathname === "/" && "font-[700]"
+            )} onClick={() => {
+              router.push("/");
+            }}>Home</Button>
+            <Button variant="ghost" className={cn(
+              "text-[1.25rem] text-[#6E7E85] font-[400]",
+              pathname === "/play" && "font-[700]"
+            )} onClick={() => {
+              router.push("/play");
+            }}>Play</Button>
+            <Button variant="ghost" className={cn(
+              "text-[1.25rem] text-[#6E7E85] font-[400]",
+              pathname === "/about" && "font-[700]"
+            )} onClick={() => {
+              router.push("/about");
+            }}>About</Button>
           </div>
           <div className="flex md:hidden justify-start space-x-1 py-2 px-6">
             <DropdownMenu>
@@ -95,16 +114,12 @@ export const Navbar = () => {
                     Home
                   </DropdownMenuItem>
                 </Link>
-                <Link href="#" onClick={() => {
-                  alert("Play Page Coming Soon");
-                }}>
+                <Link href="/play">
                   <DropdownMenuItem>
                     Play
                   </DropdownMenuItem>
                 </Link>
-                <Link href="#" onClick={() => {
-                  alert("About Page Coming Soon");
-                }}>
+                <Link href="/about">
                   <DropdownMenuItem>
                     About
                   </DropdownMenuItem>
@@ -117,10 +132,10 @@ export const Navbar = () => {
               openUserProfile();
             }}><Settings color="#6E7E85" /></Button>
             <Button variant="ghost" size="icon" onClick={() => {
-              alert("Help Page Coming Soon")
+              router.push("/help");
             }}><CircleHelp color="#6E7E85" /></Button>
             <Button variant="ghost" size="icon" onClick={() => {
-              alert("Leaderboard Page Coming Soon")
+              router.push("/leaderboard");
             }}><Trophy color="#6E7E85" /></Button>
           </div>
         </div>
