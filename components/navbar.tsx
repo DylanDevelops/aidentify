@@ -5,10 +5,12 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { Logo } from "./Logo";
-import { CircleHelp, Flame, Settings, Trophy } from "lucide-react";
+import { CircleHelp, Flame, Menu, Settings, Trophy } from "lucide-react";
 import { useConvexAuth } from "convex/react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import Link from "next/link";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
@@ -56,10 +58,36 @@ export const Navbar = () => {
           <div className="border-t rounded-sm border-2 border-[#B7CECE]"></div>
         </div>
         <div className="flex justify-between items-center py-2 px-6">
-          <div className="flex justify-start space-x-1 py-2 px-6">
+          <div className="hidden md:flex justify-start space-x-1 py-2 px-6">
             <Button variant="ghost" className="text-[1.25rem] text-[#6E7E85] font-[700]">Home</Button>
             <Button variant="ghost" className="text-[1.25rem] text-[#6E7E85] font-[400]">Play</Button>
             <Button variant="ghost" className="text-[1.25rem] text-[#6E7E85] font-[400]">About</Button>
+          </div>
+          <div className="flex md:hidden justify-start space-x-1 py-2 px-6">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Menu />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <Link href="/">
+                  <DropdownMenuItem>
+                    Home
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/play">
+                  <DropdownMenuItem>
+                    Play
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/about">
+                  <DropdownMenuItem>
+                    About
+                  </DropdownMenuItem>
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
           <div className="flex justify-start space-x-1 py-2 px-6">
             <Button variant="ghost" size="icon"><Settings color="#6E7E85" /></Button>
