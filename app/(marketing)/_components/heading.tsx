@@ -26,22 +26,22 @@ export const Heading = () => {
           Play a game
         </Button>
       )}
-      <div className="flex flex-col lg:flex-row flex-wrap justify-center gap-4">
-        <div className="w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem]">
-          <Save className="w-[3.125rem] h-[3.125rem] text-[#1C0F13]" />
-          <p className="pt-2 text-center font-[400] text-[1.25rem]">Save your progress online</p>
+      <div className="flex flex-col lg:flex-row lg:pt-[3.94rem] justify-center gap-4">
+        <div className="flex-shrink-0 w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem] lg:translate-y-0 border-[5px] border-solid border-[#6E7E85]">
+          <Save className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
+          <p className="pt-2 text-center mr-2 ml-2 font-[400] text-[1.25rem]">Save your progress online</p>
         </div>
-        <div className="w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem]">
-          <Share className="w-[3.125rem] h-[3.125rem]" />
-          <p className="pt-2 text-center font-[400] text-[1.25rem]">Share scores with friends</p>
+        <div className="flex-shrink-0 w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem] lg:translate-y-[-2.9rem] border-[5px] border-solid border-[#6E7E85]">
+          <Share className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
+          <p className="pt-2 text-center mr-2 ml-2 font-[400] text-[1.25rem]">Share scores with friends</p>
         </div>
-        <div className="w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem]">
-          <GraduationCap className="w-[3.125rem] h-[3.125rem]" />
-          <p className="pt-2 text-center font-[400] text-[1.25rem]">Learn important detection skills</p>
+        <div className="flex-shrink-0 w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem] lg:translate-y-[10px] border-[5px] border-solid border-[#6E7E85]">
+          <GraduationCap className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
+          <p className="pt-2 text-center mr-2 ml-2 font-[400] text-[1.25rem]">Learn important detection skills</p>
         </div>
-        <div className="w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem]">
-          <CopyCheck className="w-[3.125rem] h-[3.125rem]" />
-          <p className="pt-2 text-center font-[400] text-[1.25rem]">Practice with Images and Text</p>
+        <div className="flex-shrink-0 w-full lg:w-[17.1875rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(239deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_219.48%)] rounded-[4.0625rem] lg:translate-y-[-2.9rem] border-[5px] border-solid border-[#6E7E85]">
+          <CopyCheck className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
+          <p className="pt-2 text-center mr-2 ml-2 font-[400] text-[1.25rem]">Practice with Images and Text</p>
         </div>
       </div>
     </div>

@@ -12,11 +12,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";
 import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarSeparator, ProfileMenubarTrigger } from "./ui/profile-menubar";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
   const { isAuthenticated, isLoading } = useConvexAuth();
   const clerkUser = useUser();
+  const router = useRouter();
   const { signOut, openUserProfile } = useClerk();
 
   const [isUserLoading, setIsUserLoading] = useState(true);
@@ -51,7 +53,7 @@ export const Navbar = () => {
                         <span className="mx-1 text-[1.25rem] text-[#1C0F13]">{0}</span>
                         <Flame className="h-6 w-6 text-[#1C0F13] fill-[#1C0F13]" />
                       </div>
-                      <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11">
+                      <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11 relative top-[1.25px]">
                         <AvatarImage src={clerkUser.user?.imageUrl} />
                         <AvatarFallback>{clerkUser.user?.username?.[0].toUpperCase() ?? ""}</AvatarFallback>
                       </Avatar>
@@ -107,9 +109,15 @@ export const Navbar = () => {
             </DropdownMenu>
           </div>
           <div className="flex justify-start space-x-1 py-2 px-6">
-            <Button variant="ghost" size="icon"><Settings color="#6E7E85" /></Button>
-            <Button variant="ghost" size="icon"><CircleHelp color="#6E7E85" /></Button>
-            <Button variant="ghost" size="icon"><Trophy color="#6E7E85" /></Button>
+            <Button variant="ghost" size="icon" onClick={() => {
+              openUserProfile();
+            }}><Settings color="#6E7E85" /></Button>
+            <Button variant="ghost" size="icon" onClick={() => {
+              router.push("/settings");
+            }}><CircleHelp color="#6E7E85" /></Button>
+            <Button variant="ghost" size="icon" onClick={() => {
+              router.push("/leaderboard");
+            }}><Trophy color="#6E7E85" /></Button>
           </div>
         </div>
       </div>
