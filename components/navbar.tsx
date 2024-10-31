@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import { Logo } from "./Logo";
-import { CircleHelp, Flame, LogOut, Menu, Settings, Trophy } from "lucide-react";
+import { CircleHelp, Flame, LogOut, Menu, Moon, Settings, Sun, Trophy } from "lucide-react";
 import { useConvexAuth } from "convex/react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -13,6 +13,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import Link from "next/link";
 import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarSeparator, ProfileMenubarTrigger } from "./ui/profile-menubar";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
@@ -20,6 +21,7 @@ export const Navbar = () => {
   const clerkUser = useUser();
   const router = useRouter();
   const { signOut, openUserProfile } = useClerk();
+  const { theme, setTheme } = useTheme();
 
   const [isUserLoading, setIsUserLoading] = useState(true);
   useEffect(() => {
@@ -60,8 +62,8 @@ export const Navbar = () => {
                     </ProfileMenubarTrigger>
                     <ProfileMenubarContent>
                       <ProfileMenubarItem className="cursor-pointer" onClick={() => {
-                        openUserProfile();
-                      }}><Settings className="h-4 w-4 mr-2" /> Account Settings</ProfileMenubarItem>
+                        setTheme(theme === "light" ? "dark" : "light");
+                      }}><Sun className="dark:block hidden h-4 w-4 mr-2" /><Moon className="dark:hidden block h-4 w-4 mr-2" /> Toggle Appearance</ProfileMenubarItem>
                       <ProfileMenubarSeparator />
                       <ProfileMenubarItem className="cursor-pointer" onClick={() => {
                         signOut({ redirectUrl: '/' });
