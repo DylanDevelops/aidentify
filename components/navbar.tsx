@@ -130,13 +130,19 @@ export const Navbar = () => {
           <div className="flex justify-start space-x-1 py-2 px-6">
             <Button variant="ghost" size="icon" onClick={() => {
               openUserProfile();
-            }}><Settings color="#6E7E85" /></Button>
+            }}><Settings className="text-[#6E7E85] font-[400]" /></Button>
             <Button variant="ghost" size="icon" onClick={() => {
               router.push("/help");
-            }}><CircleHelp color="#6E7E85" /></Button>
+            }}><CircleHelp className={cn(
+                "text-[#6E7E85] font-[400]",
+                pathname === "/help" && "stroke-[3]"
+              )} /></Button>
             <Button variant="ghost" size="icon" onClick={() => {
               router.push("/leaderboard");
-            }}><Trophy color="#6E7E85" /></Button>
+            }}><Trophy className={cn(
+                "text-[#6E7E85] font-[400]",
+                pathname === "/leaderboard" && "stroke-[3]"
+              )} /></Button>
           </div>
         </div>
       </div>
