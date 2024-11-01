@@ -49,6 +49,8 @@ export const upsertFromClerk = internalMutation({
         level: 1n,
         currentXP: 0n,
         picture: data.image_url,
+        currentStreak: 0n,
+        lastParticipationDate: new Date().toISOString(),
       };
             
       await ctx.db.insert("users", userAttributes);
@@ -93,6 +95,43 @@ export const deleteFromClerk = internalMutation({
     } else {
       console.warn(
         `Can't delete user, there is none for Clerk user ID: ${clerkUserId}`,
+      );
+    }
+  },
+});
+
+export const updateStreak = internalMutation({
+  args: { clerkId: v.string() },
+  async handler(ctx, { clerkId }) {
+    const user = await userByClerkId(ctx, clerkId);
+
+    if(user !== null) {
+      const today = new Date().toISOString().split('T')[0];
+      const lastParticipationDate = user.lastParticipationDate.split('T')[0];
+
+      if(lastParticipationDate === today) {
+        return;
+      }
+
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+      let newStreak = user.currentStreak;
+
+      if(lastParticipationDate === yesterdayStr) {
+        newStreak += 1n;
+      } else {
+        newStreak = 1n;
+      }
+
+      await ctx.db.patch(user._id, {
+        currentStreak: newStreak,
+        lastParticipationDate: new Date().toISOString(),
+      });
+    } else {
+      console.warn(
+        `Can't update Streak for user, there is none for Clerk user ID: ${clerkId}`,
       );
     }
   },

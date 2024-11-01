@@ -9,6 +9,8 @@ export default defineSchema({
     level: v.int64(),
     currentXP: v.int64(),
     picture: v.string(),
+    currentStreak: v.int64(),
+    lastParticipationDate: v.string(),
   })
     .index("byClerkId", ["clerkId"])
     .index("byUsername", ["username"])

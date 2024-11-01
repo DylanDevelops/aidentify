@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import { Logo } from "./Logo";
 import { CircleHelp, Flame, LogOut, Menu, Moon, Settings, Sun, Trophy } from "lucide-react";
-import { useConvexAuth } from "convex/react";
+import { useConvexAuth, useQuery } from "convex/react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
@@ -14,11 +14,13 @@ import Link from "next/link";
 import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarSeparator, ProfileMenubarTrigger } from "./ui/profile-menubar";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
+import { api } from "@/convex/_generated/api";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
   const { isAuthenticated, isLoading } = useConvexAuth();
   const clerkUser = useUser();
+  const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
   const { signOut, openUserProfile } = useClerk();
   const { theme, setTheme } = useTheme();
   const router = useRouter();
@@ -31,6 +33,8 @@ export const Navbar = () => {
   }, [clerkUser]);
 
   const pathname = usePathname();
+
+  const leftPosition = `-${3 + (user?.currentStreak.toString().length || 1) * 0.5}rem`;
 
   return (
     <>
@@ -53,13 +57,13 @@ export const Navbar = () => {
                 <ProfileMenubar>
                   <ProfileMenubarMenu>
                     <ProfileMenubarTrigger>
-                      <div className="absolute left-[-3.5rem] right-1 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-[#B7CECE] to-[#BBBAC6] rounded-[3.125rem] border border-[rgba(110,_126,_133,_0.25)] p-1.5 flex items-center">
-                        <span className="mx-1 text-[1.25rem] text-[#1C0F13]">{0}</span>
+                      <div className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-[#B7CECE] to-[#BBBAC6] rounded-[3.125rem] border border-[rgba(110,_126,_133,_0.25)] p-1.5 flex items-center" style={{ left: leftPosition }}>
+                        <p className="mx-1 text-[1.25rem] text-[#1C0F13]">{user?.currentStreak.toString()}</p>
                         <Flame className="h-6 w-6 text-[#1C0F13] fill-[#1C0F13]" />
                       </div>
                       <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11 relative top-[1.25px]">
-                        <AvatarImage src={clerkUser.user?.imageUrl} />
-                        <AvatarFallback>{clerkUser.user?.username?.[0].toUpperCase() ?? ""}</AvatarFallback>
+                        <AvatarImage src={user?.picture} />
+                        <AvatarFallback>{user?.username[0].toUpperCase() ?? ""}</AvatarFallback>
                       </Avatar>
                     </ProfileMenubarTrigger>
                     <ProfileMenubarContent>
