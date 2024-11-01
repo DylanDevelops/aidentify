@@ -19,13 +19,13 @@ export const Heading = () => {
       </h3>
       {!isAuthenticated && !isLoading && (
         <SignUpButton mode="modal">
-          <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[400]">
+          <Button variant="default_gradient" className="text-[rgba(28,_15,_19,_0.50)] font-[400] w-[10.9375rem] h-[3.125rem] text-lg">
             Sign up to play
           </Button>
         </SignUpButton>
       )}
       {isAuthenticated && !isLoading && (
-        <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[400]" onClick={() => {
+        <Button variant="default_gradient" className="text-[rgba(28,_15,_19,_0.50)] font-[400] w-[10.9375rem] h-[3.125rem] text-lg rounded-[3.125rem]" onClick={() => {
           router.push("/play")
         }}>
           Play a game
