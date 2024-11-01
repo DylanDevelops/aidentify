@@ -13,7 +13,11 @@ const GamePage = () => {
   const gamemode = searchParams.get('gamemode');
 
   useEffect(() => {
-    if (!gamemode) {
+    if (!gamemode 
+      || (gamemode !== "images"
+      && gamemode !== "text"
+      && gamemode !== "daily_challenge")
+    ) {
       router.push('/play');
     }
   }, [gamemode, router]);
