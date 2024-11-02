@@ -30,10 +30,10 @@ const GamePage = () => {
             <p className="text-[1.125rem]">Select the AI Generated Image</p>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-center text-center gap-10 md:gap-[6.25rem] flex-1 px-6 py-10 md:py-2">
-            <div className="w-[25rem] h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none hover:scale-105 cursor-pointer transition-transform duration-300">
+            <div className="w-[25rem] h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none sm:hover:scale-105 cursor-pointer transition-transform duration-300">
               <Image src="/testing/test_image.jpeg" layout="fill" objectFit="cover" draggable={false} alt="Image Option" className="absolute inset-0 w-full h-full object-cover" />
             </div>
-            <div className="w-[25rem] h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none hover:scale-105 cursor-pointer transition-transform duration-300">
+            <div className="w-[25rem] h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none sm:hover:scale-105 cursor-pointer transition-transform duration-300">
               <Image src="/testing/test_image_2.jpeg" layout="fill" objectFit="cover" draggable={false} alt="Image Option" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           </div>
@@ -55,14 +55,14 @@ const GamePage = () => {
             <p className="text-[1.125rem]">Select the AI Generated Text Sample</p>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-center text-center gap-10 md:gap-[6.25rem] flex-1 px-6 py-10 md:py-2">
-            <div className="w-[25rem] h-[25rem] rounded-[2.5rem] hover:border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none hover:scale-105 cursor-pointer transition-transform duration-300 flex items-center justify-center text-center p-10">
+            <div className="w-[25rem] h-[25rem] rounded-[2.5rem] hover:border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none sm:hover:scale-105 cursor-pointer transition-transform duration-300 flex items-center justify-center text-center p-10">
               <div>
                 <h1 className="font-bold pb-3">Koi</h1>
                 <p>Among heart-shaped leaves<br />the white fish gleams, red tail.<br />Soft lotuses sleep.</p>
               </div>
             </div>
             <div className="w-[25rem] h-[3px] md:w-[3px] md:h-[25rem] bg-[rgba(110,_126,_133)] rounded"></div>
-            <div className="w-[25rem] h-[25rem] rounded-[2.5rem] hover:border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none hover:scale-105 cursor-pointer transition-transform duration-300 flex items-center justify-center text-center p-10">
+            <div className="w-[25rem] h-[25rem] rounded-[2.5rem] hover:border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none sm:hover:scale-105 cursor-pointer transition-transform duration-300 flex items-center justify-center text-center p-10">
               <div>
                 <h1 className="font-bold pb-3">Nature&apos;s Embrace</h1>
                 <p>Whispers in the breeze,<br />Sunlight dances on the leaves,<br />Nature&apos;s soft embrace.</p>

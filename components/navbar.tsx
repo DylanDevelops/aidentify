@@ -52,7 +52,12 @@ export const Navbar = () => {
                 </Button>
               </SignInButton>
             )}
-            {isAuthenticated  && !isLoading && !isUserLoading && (
+            {
+              isAuthenticated  
+            && !isLoading 
+            && !isUserLoading 
+            && user?.picture !== undefined && 
+            (
               <div className="relative">
                 <ProfileMenubar>
                   <ProfileMenubarMenu>
