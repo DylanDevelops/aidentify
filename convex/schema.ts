@@ -15,4 +15,19 @@ export default defineSchema({
     .index("byClerkId", ["clerkId"])
     .index("byUsername", ["username"])
     .index("byLevel", ["level"]),
+
+  images: defineTable({
+    storageId: v.id("_storage"),
+    internalName: v.string(),
+    isAIGenerated: v.boolean(),
+    AIGeneratedPrompt: v.optional(v.string()),
+    copyrightInfo: v.optional(v.string()),
+  }),
+
+  levels: defineTable({
+    images: v.array(v.id("images")),
+    groupName: v.string(),
+    classification: v.string(),
+    hints: v.array(v.string()),
+  }),
 });
