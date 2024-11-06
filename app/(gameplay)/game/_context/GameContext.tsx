@@ -3,7 +3,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useUser } from "@clerk/clerk-react";
 import { useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface IGameContext {
   levels: Id<"levels">[];
@@ -11,6 +11,7 @@ interface IGameContext {
   score: number;
   currentLevelId: Id<"levels"> | null;
   currentImageSrcUrls: string[];
+  currentImageIds: Id<"images">[] | null;
   isSubmittingGuess: boolean;
   submitGuess: (selectedId: Id<"images">) => Promise<void>;
   nextRound: () => void;
@@ -32,7 +33,8 @@ export const GameProvider = ({
   const [currentRound, setCurrentRound] = useState(0);
   const [score, setScore] = useState(0);
   const [currentLevelId, setCurrentLevel] = useState<Id<"levels"> | null>(null);
-  const [currentImageSrcUrls, setCurrentSrcUrls] = useState<string[]>([]);
+  const [currentImageSrcUrls, setCurrentImageSrcUrls] = useState<string[]>([]);
+  const [currentImageIds, setCurrentImageIds] = useState<Id<"images">[]>([]);
   const [cacheBuster] = useState(Math.random());
   const [imageHasBeenSelected, setImageHasBeenSelected] = useState(false);
   const [isSubmittingGuess, setIsSubmittingGuess] = useState(false);
@@ -45,6 +47,7 @@ export const GameProvider = ({
 
   const levelIds = useQuery(api.game.getRandomLevels, { cacheBuster, numOfLevels: 2n });
   const imageSrcs = useQuery(api.game.getImageSrcs, currentLevelId ? { levelId: currentLevelId } : "skip");
+  const imageIds = useQuery(api.game.getImageIds, currentLevelId ? { levelId: currentLevelId } : "skip");
   const checkGuess = useMutation(api.game.checkGuess);
 
   useEffect(() => {
@@ -56,16 +59,17 @@ export const GameProvider = ({
   }, [levelIds]);
 
   useEffect(() => {
-    if(currentLevelId && imageSrcs) {
-      setCurrentSrcUrls(imageSrcs.filter((src): src is string => src !== null));
+    if(currentLevelId && imageSrcs && imageIds) {
+      setCurrentImageSrcUrls(imageSrcs.filter((src): src is string => src !== null));
+      setCurrentImageIds(imageIds);
     }
-  }, [currentLevelId, imageSrcs]);
+  }, [currentLevelId, imageSrcs, imageIds]);
 
   const submitGuess = async (selectedImageId: Id<"images">) => {
     if(!currentLevelId) return;
 
     setIsSubmittingGuess(true);
-
+    
     try {
       const result = await checkGuess({ levelId: currentLevelId, selectedImageId });
 
@@ -75,6 +79,8 @@ export const GameProvider = ({
 
       setScoreAwarded(result.score);
       setAllScores(prevScores => [...prevScores, result.score]);
+
+      alert("Guessed correctly: " + result.correct);
     } catch (error) {
       console.error("Error submitting guess:", error);
     } finally {
@@ -125,6 +131,7 @@ export const GameProvider = ({
         score,
         currentLevelId,
         currentImageSrcUrls,
+        currentImageIds,
         isSubmittingGuess,
         submitGuess,
         nextRound,
@@ -143,6 +150,7 @@ export const GameProvider = ({
       score,
       currentLevelId,
       currentImageSrcUrls,
+      currentImageIds,
       isSubmittingGuess,
       submitGuess,
       nextRound,
@@ -153,3 +161,6 @@ export const GameProvider = ({
     </GameContext.Provider>
   );
 };
+
+// Export the hook so that components can use game context
+export const useGame = () => useContext(GameContext);

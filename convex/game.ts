@@ -60,9 +60,42 @@ export const getImageSrcs = query({
       throw new Error("No images exist");
     }
 
-    const imageUrls = await Promise.all(images.map(image => ctx.storage.getUrl(image!.storageId)))
+    const imageUrls = await Promise.all(images.map(image => ctx.storage.getUrl(image!.storageId)));
+
+    console.log(imageUrls);
 
     return imageUrls;
+  }
+});
+
+/**
+ * Query to get image IDs associated with a given level.
+ *
+ * @param {Object} args - The arguments object.
+ * @param {string} args.levelId - The ID of the level to get images for.
+ * @returns {Promise<string[]>} A promise that resolves to an array of image IDs.
+ * @throws {Error} If the levelId is missing or if no images exist for the given level.
+ */
+export const getImageIds = query({
+  args: { levelId: v.id("levels") },
+  handler: async (ctx, args) => {
+    if(!args.levelId) {
+      throw new Error("Missing levelId");
+    }
+
+    const level = await ctx.db.get(args.levelId);
+
+    const images = await Promise.all(level!.images.map(imageId => ctx.db.get(imageId)));
+
+    if(!images) {
+      throw new Error("No images exist");
+    }
+
+    const imageIds = await Promise.all(images.map(image => image!._id));
+
+    console.log(imageIds);
+
+    return imageIds;
   }
 });
 
