@@ -34,29 +34,35 @@ export const getRandomLevels = query({
 });
 
 /**
- * Retrieves the image source URL for a given image ID.
+ * Query to get image source URLs for a given level.
  *
  * @param {Object} args - The arguments object.
- * @param {string} args.imageId - The ID of the image to retrieve.
- * @returns {Promise<string>} The URL of the image.
- * @throws {Error} If the imageId is missing or if no image is found.
+ * @param {string} args.levelId - The ID of the level to get images for.
+ * @returns {Promise<string[]>} - A promise that resolves to an array of image URLs.
+ * @throws {Error} - Throws an error if `levelId` is missing or if no images exist.
+ *
+ * @example
+ * const imageSrcs = await getImageSrcs({ levelId: "some-level-id" });
+ * console.log(imageSrcs); // ["url1", "url2", ...]
  */
-export const getImageSrc = query({
-  args: { imageId: v.id("images") },
+export const getImageSrcs = query({
+  args: { levelId: v.id("levels") },
   handler: async (ctx, args) => {
-    if(!args.imageId) {
-      throw new Error("Missing imageId.");
+    if(!args.levelId) {
+      throw new Error("Missing levelId.");
     }
 
-    const image = await ctx.db.get(args.imageId);
+    const level = await ctx.db.get(args.levelId);
 
-    if(!image) {
-      throw new Error("No levels exist");
+    const images = await Promise.all(level!.images.map(imageId => ctx.db.get(imageId)));
+
+    if(!images) {
+      throw new Error("No images exist");
     }
 
-    const imageUrl = await ctx.storage.getUrl(image.storageId);
+    const imageUrls = await Promise.all(images.map(image => ctx.storage.getUrl(image!.storageId)))
 
-    return imageUrl;
+    return imageUrls;
   }
 });
 
@@ -84,17 +90,26 @@ export const checkGuess = mutation({
       throw new Error("No AI-generated image found.");
     }
 
+    let score = 0;
+    let correct = false;
+
     if(args.selectedImageId === AIGeneratedImageId._id) {
       // TODO: Implement correct guess here
+      score = 50;
+      correct = true;
     } else {
       // TODO: Implement incorrect guess here
+      score = 0;
+      correct = false;
     }
 
     return {
+      correct,
       correctImageId: AIGeneratedImageId._id,
       groupName: level.groupName,
       classification: level.classification,
       hints: level.hints,
+      score,
     }
   }
 });

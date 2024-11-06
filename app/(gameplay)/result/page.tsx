@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 import { CalendarClock, ImagePlay, PartyPopper, TextSearch } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const GamePage = () => {
+const GameResultPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -105,4 +105,4 @@ const GamePage = () => {
   )
 }
  
-export default GamePage;
+export default GameResultPage;
