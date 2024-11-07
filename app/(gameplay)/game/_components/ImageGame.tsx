@@ -9,23 +9,16 @@ const ImageGame = () => {
   const {
     levels,
     currentRound,
-    score,
-    currentLevelId,
     currentImageSrcUrls,
     currentImageIds,
-    correctImageId,
     correctImageSrcUrl,
-    copyrightInfo,
     generationPrompt,
-    classification,
-    groupName,
     hints,
     wasCorrect,
     isSubmittingGuess,
     imageHasBeenSelected,
     submitGuess,
     nextRound,
-    scoreAwarded,
     isLoading
   } = useGame()!;
 

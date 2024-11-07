@@ -1,6 +1,5 @@
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { useUser } from "@clerk/clerk-react";
 import { useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -58,6 +57,7 @@ export const GameProvider = ({
   const [scoreAwarded, setScoreAwarded] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [allScores, setAllScores] = useState<number[]>([]);
 
   const levelIds = useQuery(api.game.getRandomLevels, { cacheBuster, numOfLevels: 2n });
