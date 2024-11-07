@@ -13,6 +13,7 @@ interface IGameContext {
   currentImageSrcUrls: string[];
   currentImageIds: Id<"images">[] | null;
   isSubmittingGuess: boolean;
+  imageHasBeenSelected: boolean;
   submitGuess: (selectedId: Id<"images">) => Promise<void>;
   nextRound: () => void;
   scoreAwarded: number | null;
@@ -73,14 +74,14 @@ export const GameProvider = ({
     try {
       const result = await checkGuess({ levelId: currentLevelId, selectedImageId });
 
+      setImageHasBeenSelected(true);
+
       setScore(prevScore => prevScore + result.score);
       setCorrectImageId(result.correctImageId);
       setCorrectGuesses(prev => result.correct ? prev + 1 : prev);
 
       setScoreAwarded(result.score);
       setAllScores(prevScores => [...prevScores, result.score]);
-
-      alert("Guessed correctly: " + result.correct);
     } catch (error) {
       console.error("Error submitting guess:", error);
     } finally {
@@ -96,7 +97,7 @@ export const GameProvider = ({
         gamemode: "images", // TODO: Change this based on actual gamemode in the future
         correct: correctGuesses.toString(),
         rounds: levels.length.toString(),
-        pointsGained: score.toString(),
+        points: score.toString(),
       });
 
       router.push(`/results?${query.toString()}`);
@@ -131,6 +132,7 @@ export const GameProvider = ({
         currentImageSrcUrls,
         currentImageIds,
         isSubmittingGuess,
+        imageHasBeenSelected,
         submitGuess,
         nextRound,
         scoreAwarded,
@@ -150,6 +152,7 @@ export const GameProvider = ({
       currentImageSrcUrls,
       currentImageIds,
       isSubmittingGuess,
+      imageHasBeenSelected,
       submitGuess,
       nextRound,
       scoreAwarded,
