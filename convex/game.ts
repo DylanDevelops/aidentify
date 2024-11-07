@@ -62,8 +62,6 @@ export const getImageSrcs = query({
 
     const imageUrls = await Promise.all(images.map(image => ctx.storage.getUrl(image!.storageId)));
 
-    console.log(imageUrls);
-
     return imageUrls;
   }
 });
@@ -92,8 +90,6 @@ export const getImageIds = query({
     }
 
     const imageIds = await Promise.all(images.map(image => image!._id));
-
-    console.log(imageIds);
 
     return imageIds;
   }
@@ -128,9 +124,6 @@ export const checkGuess = mutation({
         break;
       }
     }
-    
-    console.log("AI Image:" + AIGeneratedImageId);
-    console.log("Level:" + level);
 
     if(!AIGeneratedImageId) {
       throw new Error("No AI-generated image found.");
