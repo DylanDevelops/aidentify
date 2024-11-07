@@ -118,11 +118,13 @@ export const checkGuess = mutation({
     }
 
     let AIGeneratedImageId;
+    let AIGeneratedImagePrompt;
 
     for (const imageId of level.images) {
       const image = await ctx.db.get(imageId);
       if (image && image.isAIGenerated) {
         AIGeneratedImageId = image;
+        AIGeneratedImagePrompt = image.AIGeneratedPrompt;
         break;
       }
     }
@@ -153,6 +155,7 @@ export const checkGuess = mutation({
       groupName: level.groupName,
       classification: level.classification,
       hints: level.hints,
+      aiImagePrompt: AIGeneratedImagePrompt,
       score,
     }
   }

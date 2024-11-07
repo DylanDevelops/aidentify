@@ -1,5 +1,5 @@
 import { Footer } from "@/components/footer";
-import { Check, ChevronLeft, ChevronRight, Loader2, TriangleAlert } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Loader2, TriangleAlert, X } from "lucide-react";
 import Image from "next/image";
 import { useGame } from "../_context/GameContext";
 import { Id } from "@/convex/_generated/dataModel";
@@ -13,6 +13,14 @@ const ImageGame = () => {
     currentLevelId,
     currentImageSrcUrls,
     currentImageIds,
+    correctImageId,
+    correctImageSrcUrl,
+    copyrightInfo,
+    generationPrompt,
+    classification,
+    groupName,
+    hints,
+    wasCorrect,
     isSubmittingGuess,
     imageHasBeenSelected,
     submitGuess,
@@ -77,34 +85,49 @@ const ImageGame = () => {
         <>
           <div className="flex flex-col items-center justify-center flex-1 md:gap-6">
             <div className="flex flex-col items-center justify-center">
-              <h1 className="text-[1.5625rem] text-[#6E7E85] font-bold mb-4">Congrats! You selected the correct image!</h1>
+              {wasCorrect ? (
+                <h1 className="text-[1.5625rem] text-[#6E7E85] font-bold mb-4">Congrats! You selected the correct image!</h1>
+              ) : (
+                <h1 className="text-[1.5625rem] text-[#6E7E85] font-bold mb-4">Sorry! You selected the incorrect image!</h1>
+              )}
               <p className="text-[1.25rem] text-[rgba(86,_83,_115,_0.75)] font-normal mb-4">70% of users guessed this image correctly</p>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-center text-center gap-10 md:gap-[2rem] px-6 py-10 md:py-2">
               <div className="w-[18.75rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none transition-transform duration-300">
-                { (isLoading) ? (
+                {isLoading ? (
                   <div className="flex items-center justify-center w-full h-full">
                     <Loader2 className="w-1/2 h-1/2 animate-spin" />
                   </div>
                 ) : (
                   <>
-                    <Image src={currentImageSrcUrls[0]} layout="fill" objectFit="cover" draggable={false} alt="Image Option" className="absolute inset-0 w-full h-full object-cover" />
+                    <Image src={correctImageSrcUrl!} layout="fill" objectFit="cover" draggable={false} alt="Image Option" className="absolute inset-0 w-full h-full object-cover" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Check className="w-[15rem] h-[15rem] text-[#E2E2E2] drop-shadow-2xl" style={{ filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))' }} />
+                      {wasCorrect ? (
+                        <Check className="w-[15rem] h-[15rem] text-[#E2E2E2] drop-shadow-2xl" style={{ filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))' }} />
+                      ) : (
+                        <X className="w-[15rem] h-[15rem] text-[#E2E2E2] drop-shadow-2xl" style={{ filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))' }} />
+                      )}
                     </div>
                   </>
                 )}
               </div>
               <div className="w-[25rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] bg-[linear-gradient(101deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(187,_186,_198,_0.85)_100%)] overflow-hidden relative select-none transition-transform duration-300">
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-[4.5rem] gap-6">
+                {/* TODO: fix p-[4.5rem] should be for the div below. */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-[2rem] gap-6 overflow-y-auto min-h-[18.75rem]">
                   <h1 className="font-bold text-[rgba(28,_15,_19,_0.75)] text-[1.25rem]">AI Image Prompt</h1>
-                  <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">Generate a photorealistic image of a pink wispy sunset with blue sky</p>
+                  <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">{generationPrompt}</p>
                 </div>
               </div>
               <div className="w-[25rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] bg-[linear-gradient(101deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(187,_186,_198,_0.85)_100%)] overflow-hidden relative select-none transition-transform duration-300">
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-[4.5rem] gap-6">
                   <h1 className="font-bold text-[rgba(28,_15,_19,_0.75)] text-[1.25rem]">AI Giveaways</h1>
-                  <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">The wisps are not correctly textured and are too vibrant to be real</p>
+                  <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">
+                    <ul className="list-disc list-inside">
+                      {hints?.map((hint, index) => (
+                        <li key={index}>{hint}</li>
+                      ))}
+                    </ul>
+                  </p>
                 </div>
               </div>
             </div>

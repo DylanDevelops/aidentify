@@ -12,6 +12,14 @@ interface IGameContext {
   currentLevelId: Id<"levels"> | null;
   currentImageSrcUrls: string[];
   currentImageIds: Id<"images">[] | null;
+  correctImageId: Id<"images"> | null;
+  correctImageSrcUrl: string | null;
+  copyrightInfo: string | null;
+  generationPrompt: string | null;
+  classification: string | null;
+  groupName: string | null;
+  hints: string[] | null;
+  wasCorrect: boolean | null;
   isSubmittingGuess: boolean;
   imageHasBeenSelected: boolean;
   submitGuess: (selectedId: Id<"images">) => Promise<void>;
@@ -28,7 +36,6 @@ export const GameProvider = ({
   children: React.ReactNode
 }) => {
   const router = useRouter();
-  const user = useUser();
 
   const [levels, setLevels] = useState<Id<"levels">[]>([]);
   const [currentRound, setCurrentRound] = useState(0);
@@ -36,6 +43,13 @@ export const GameProvider = ({
   const [currentLevelId, setCurrentLevel] = useState<Id<"levels"> | null>(null);
   const [currentImageSrcUrls, setCurrentImageSrcUrls] = useState<string[]>([]);
   const [currentImageIds, setCurrentImageIds] = useState<Id<"images">[]>([]);
+  const [correctImageSrcUrl, setCorrectImageSrcUrl] = useState<string | null>(null);
+  const [copyrightInfo, setCopyrightInfo] = useState<string | null>(null);
+  const [generationPrompt, setGenerationPrompt] = useState<string | null>(null);
+  const [classification, setClassification] = useState<string | null>(null);
+  const [groupName, setGroupName] = useState<string | null>(null);
+  const [hints, setHints] = useState<string[] | null>(null);
+  const [wasCorrect, setWasCorrect] = useState<boolean | null>(null);
   const [cacheBuster] = useState(Math.random());
   const [imageHasBeenSelected, setImageHasBeenSelected] = useState(false);
   const [isSubmittingGuess, setIsSubmittingGuess] = useState(false);
@@ -76,8 +90,16 @@ export const GameProvider = ({
 
       setImageHasBeenSelected(true);
 
-      setScore(prevScore => prevScore + result.score);
       setCorrectImageId(result.correctImageId);
+      setCorrectImageSrcUrl(currentImageSrcUrls[currentImageIds.findIndex(id => id === result.correctImageId)]);
+      setCopyrightInfo(null); // TODO
+      setGenerationPrompt(result.aiImagePrompt!);
+      setClassification(result.classification);
+      setGroupName(result.groupName);
+      setHints(result.hints);
+      setWasCorrect(result.correct);
+
+      setScore(prevScore => prevScore + result.score);
       setCorrectGuesses(prev => result.correct ? prev + 1 : prev);
 
       setScoreAwarded(result.score);
@@ -110,6 +132,13 @@ export const GameProvider = ({
 
       setImageHasBeenSelected(false);
       setCorrectImageId(null);
+      setCorrectImageSrcUrl(null);
+      setCopyrightInfo(null);
+      setGenerationPrompt(null);
+      setClassification(null);
+      setGroupName(null);
+      setHints(null);
+      setWasCorrect(null);
       setScoreAwarded(null);
     }
   };
@@ -131,6 +160,14 @@ export const GameProvider = ({
         currentLevelId,
         currentImageSrcUrls,
         currentImageIds,
+        correctImageId,
+        correctImageSrcUrl,
+        copyrightInfo,
+        generationPrompt,
+        classification,
+        groupName,
+        hints,
+        wasCorrect,
         isSubmittingGuess,
         imageHasBeenSelected,
         submitGuess,
@@ -151,6 +188,14 @@ export const GameProvider = ({
       currentLevelId,
       currentImageSrcUrls,
       currentImageIds,
+      correctImageId,
+      correctImageSrcUrl,
+      copyrightInfo,
+      generationPrompt,
+      classification,
+      groupName,
+      hints,
+      wasCorrect,
       isSubmittingGuess,
       imageHasBeenSelected,
       submitGuess,
