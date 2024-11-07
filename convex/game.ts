@@ -117,7 +117,18 @@ export const checkGuess = mutation({
       throw new Error("No levels exist");
     }
 
-    const AIGeneratedImageId = (await ctx.db.query("images").filter(q => q.eq(q.field("isAIGenerated"), true)).collect()).at(0);
+    let AIGeneratedImageId;
+
+    for (const imageId of level.images) {
+      const image = await ctx.db.get(imageId);
+      if (image && image.isAIGenerated) {
+        AIGeneratedImageId = image;
+        break;
+      }
+    }
+    
+    console.log("AI Image:" + AIGeneratedImageId);
+    console.log("Level:" + level);
 
     if(!AIGeneratedImageId) {
       throw new Error("No AI-generated image found.");

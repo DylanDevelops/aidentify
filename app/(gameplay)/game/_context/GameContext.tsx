@@ -91,9 +91,7 @@ export const GameProvider = ({
   const nextRound = () => {
     const nextRoundNumber = currentRound + 1;
 
-    if(nextRoundNumber > levels.length) {
-      const username = user.user?.username ?? "Anonymous";
-      
+    if(nextRoundNumber > levels.length) {      
       const query = new URLSearchParams({
         gamemode: "images", // TODO: Change this based on actual gamemode in the future
         correct: correctGuesses.toString(),
