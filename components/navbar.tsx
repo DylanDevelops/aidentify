@@ -5,14 +5,14 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import { Logo } from "./Logo";
-import { CircleHelp, Flame, LogOut, Menu, Moon, Settings, Sun, Trophy } from "lucide-react";
+import { CircleHelp, Flame, LogOut, Menu, Settings, Trophy } from "lucide-react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";
-import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarSeparator, ProfileMenubarTrigger } from "./ui/profile-menubar";
-import { useTheme } from "next-themes";
+import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarTrigger } from "./ui/profile-menubar";
+// import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 
@@ -22,7 +22,7 @@ export const Navbar = () => {
   const clerkUser = useUser();
   const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
   const { signOut, openUserProfile } = useClerk();
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
   const router = useRouter();
 
   const [isUserLoading, setIsUserLoading] = useState(true);
@@ -72,10 +72,10 @@ export const Navbar = () => {
                       </Avatar>
                     </ProfileMenubarTrigger>
                     <ProfileMenubarContent>
-                      <ProfileMenubarItem className="cursor-pointer" onClick={() => {
+                      {/* <ProfileMenubarItem className="cursor-pointer" onClick={() => {
                         setTheme(theme === "light" ? "dark" : "light");
                       }}><Sun className="dark:block hidden h-4 w-4 mr-2" /><Moon className="dark:hidden block h-4 w-4 mr-2" /> Toggle Appearance</ProfileMenubarItem>
-                      <ProfileMenubarSeparator />
+                      <ProfileMenubarSeparator /> */}
                       <ProfileMenubarItem className="cursor-pointer" onClick={() => {
                         signOut({ redirectUrl: '/' });
                       }}><LogOut className="h-4 w-4 mr-2" />Logout</ProfileMenubarItem>
