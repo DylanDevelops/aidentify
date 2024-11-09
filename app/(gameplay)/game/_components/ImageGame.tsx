@@ -35,7 +35,7 @@ const ImageGame = () => {
       {!imageHasBeenSelected && !isSubmittingGuess ? (
         <>
           <div className="flex items-center justify-center">
-            <p className="text-[1.125rem]">Select the AI Generated Image</p>
+            <p className="text-[1.125rem] text-[#6E7E85]">Select the AI Generated Image</p>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-center text-center gap-10 md:gap-[6.25rem] flex-1 px-6 py-10 md:py-2">
             <div className="w-[25rem] h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none sm:hover:scale-105 cursor-pointer transition-transform duration-300" onClick={() => {
@@ -67,7 +67,7 @@ const ImageGame = () => {
           </div>
           <div className="flex flex-col md:flex-row items-center gap-2 justify-center text-center">
             <TriangleAlert className="text-[#6E7E85] w-3 h-3 md:w-6 md:h-6" />
-            <p className="text-[0.75rem] md:text-[1.125rem]"><span className="font-bold">Tip:</span> Pay attention to repetition, distortions, and lack of details to distinguish AI generated images</p>
+            <p className="text-[0.75rem] text-[#6A6884] md:text-[1.125rem]"><span className="font-bold">Tip:</span> Pay attention to repetition, distortions, and lack of details to distinguish AI generated images</p>
           </div>
         </>
       ) : (isSubmittingGuess) ? (
@@ -124,10 +124,10 @@ const ImageGame = () => {
                 </div>
               </div>
             </div>
-            <Button variant="default_gradient" className="text-[rgba(183,_206,_206,_0.85)] font-[400] w-[10.9375rem] h-[3.125rem] text-[rgba(28,_15,_19,_0.50] text-lg rounded-[3.125rem]" onClick={() => {
+            <Button variant="default_gradient" className="font-[400] w-[10.9375rem] h-[3.125rem] text-[rgba(28,_15,_19,_0.50)] text-lg rounded-[3.125rem]" onClick={() => {
               handleNextRound();
             }}>
-              Next Image <ChevronRight />
+              Next Image <ChevronRight className="stroke-[3]" />
             </Button>
             <p className="text-[1.25rem] text-[rgba(86,_83,_115,_0.75)] font-normal mb-4 flex flex-row align-middle justify-center items-center mt-10 md:mt-0">
               <ChevronLeft /> {currentRound} of {levels.length} <ChevronRight />

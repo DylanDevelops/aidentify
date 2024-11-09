@@ -2,7 +2,7 @@
 
 import { FancyBackgroundGradient } from "@/components/fancy-background-gradient";
 import { Footer } from "@/components/footer";
-import { CalendarClock, ImagePlay, TextSearch } from "lucide-react";
+import { CalendarClock, ChevronRight, ImagePlay, TextSearch } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const PlayPage = () => {
@@ -22,19 +22,19 @@ const PlayPage = () => {
               handleNavigation("daily_challenge");
             }}>
               <CalendarClock className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
-              <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem]">Daily Challenge</p>
+              <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center">Daily Challenge <ChevronRight className="ml-1 stroke-[3]" /></p>
             </div>
             <div className="flex-shrink-0 w-[22rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#6E7E85] hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
               handleNavigation("images");
             }}>
               <ImagePlay className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
-              <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem]">Play Images</p>
+              <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center justify-center">Play Images <ChevronRight className="ml-1 stroke-[3]" /></p>
             </div>
             <div className="flex-shrink-0 w-[22rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(56deg,_rgba(187,_186,_198,_0.85)_0%,_rgba(86,_83,_115,_0.72)_202.26%)] rounded-[2.5rem] border-[5px] border-solid border-[#6E7E85] hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
               handleNavigation("text");
             }}>
               <TextSearch className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
-              <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem]">Play Text</p>
+              <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center">Play Text <ChevronRight className="ml-1 stroke-[3]" /></p>
             </div>
           </div>
         </div>
