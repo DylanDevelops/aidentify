@@ -46,8 +46,8 @@ export const Navbar = () => {
           <div className="mr-2 pt-6 pl-6 pb-2"><Logo clickable={true} href="/" /></div>
           <div className="ml-auto pt-6 pr-6 pb-2 space-x-2 flex items-center">
             {!isAuthenticated  && !isLoading && (
-              <SignInButton mode="modal">
-                <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[700]">
+              <SignInButton>
+                <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[700] w-[6.25rem] h-[3.125rem] text-lg rounded-[3.125rem]">
                   Login
                 </Button>
               </SignInButton>

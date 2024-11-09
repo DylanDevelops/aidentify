@@ -18,8 +18,8 @@ export const Heading = () => {
         Through <span className="text-[#6E7E85] text-[1.25rem] font-[700]">images</span>, <span className="text-[#6A6884] text-[1.25rem] font-[700]">text</span>, and more, learn to identify <span className="text-[rgba(28,_15,_19,_0.75)] text-[1.25rem] font-[700]">AI generated content</span> in the real world!
       </h3>
       {!isAuthenticated && !isLoading && (
-        <SignUpButton mode="modal">
-          <Button variant="default_gradient" className="text-[rgba(28,_15,_19,_0.50)] font-[400] w-[10.9375rem] h-[3.125rem] text-lg">
+        <SignUpButton>
+          <Button variant="default_gradient" className="text-[rgba(28,_15,_19,_0.50)] font-[400] w-[10.9375rem] h-[3.125rem] text-lg rounded-[3.125rem]">
             Sign up to play
           </Button>
         </SignUpButton>
