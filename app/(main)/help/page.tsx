@@ -13,6 +13,6 @@ const HelpPage = () => {
       </div>
     </>
   );
-}
+};
  
 export default HelpPage;

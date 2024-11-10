@@ -42,6 +42,6 @@ const PlayPage = () => {
       </div>
     </>
   );
-}
+};
  
 export default PlayPage;

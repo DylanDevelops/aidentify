@@ -150,6 +150,6 @@ export const checkGuess = mutation({
       hints: level.hints,
       aiImagePrompt: AIGeneratedImagePrompt,
       score,
-    }
+    };
   }
 });

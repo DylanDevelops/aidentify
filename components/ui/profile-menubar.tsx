@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as MenubarPrimitive from "@radix-ui/react-menubar"
-import { Check, ChevronRight, Circle } from "lucide-react"
+import * as React from "react";
+import * as MenubarPrimitive from "@radix-ui/react-menubar";
+import { Check, ChevronRight, Circle } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const ProfileMenubarMenu = MenubarPrimitive.Menu
+const ProfileMenubarMenu = MenubarPrimitive.Menu;
 
-const ProfileMenubarGroup = MenubarPrimitive.Group
+const ProfileMenubarGroup = MenubarPrimitive.Group;
 
-const ProfileMenubarPortal = MenubarPrimitive.Portal
+const ProfileMenubarPortal = MenubarPrimitive.Portal;
 
-const ProfileMenubarSub = MenubarPrimitive.Sub
+const ProfileMenubarSub = MenubarPrimitive.Sub;
 
-const ProfileMenubarRadioGroup = MenubarPrimitive.RadioGroup
+const ProfileMenubarRadioGroup = MenubarPrimitive.RadioGroup;
 
 const ProfileMenubar = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Root>,
@@ -28,8 +28,8 @@ const ProfileMenubar = React.forwardRef<
     )}
     {...props}
   />
-))
-ProfileMenubar.displayName = MenubarPrimitive.Root.displayName
+));
+ProfileMenubar.displayName = MenubarPrimitive.Root.displayName;
 
 const ProfileMenubarTrigger = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Trigger>,
@@ -43,8 +43,8 @@ const ProfileMenubarTrigger = React.forwardRef<
     )}
     {...props}
   />
-))
-ProfileMenubarTrigger.displayName = MenubarPrimitive.Trigger.displayName
+));
+ProfileMenubarTrigger.displayName = MenubarPrimitive.Trigger.displayName;
 
 const ProfileMenubarSubTrigger = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.SubTrigger>,
@@ -64,8 +64,8 @@ const ProfileMenubarSubTrigger = React.forwardRef<
     {children}
     <ChevronRight className="ml-auto h-4 w-4" />
   </MenubarPrimitive.SubTrigger>
-))
-ProfileMenubarSubTrigger.displayName = MenubarPrimitive.SubTrigger.displayName
+));
+ProfileMenubarSubTrigger.displayName = MenubarPrimitive.SubTrigger.displayName;
 
 const ProfileMenubarSubContent = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.SubContent>,
@@ -79,8 +79,8 @@ const ProfileMenubarSubContent = React.forwardRef<
     )}
     {...props}
   />
-))
-ProfileMenubarSubContent.displayName = MenubarPrimitive.SubContent.displayName
+));
+ProfileMenubarSubContent.displayName = MenubarPrimitive.SubContent.displayName;
 
 const ProfileMenubarContent = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Content>,
@@ -104,8 +104,8 @@ const ProfileMenubarContent = React.forwardRef<
       />
     </MenubarPrimitive.Portal>
   )
-)
-ProfileMenubarContent.displayName = MenubarPrimitive.Content.displayName
+);
+ProfileMenubarContent.displayName = MenubarPrimitive.Content.displayName;
 
 const ProfileMenubarItem = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Item>,
@@ -122,8 +122,8 @@ const ProfileMenubarItem = React.forwardRef<
     )}
     {...props}
   />
-))
-ProfileMenubarItem.displayName = MenubarPrimitive.Item.displayName
+));
+ProfileMenubarItem.displayName = MenubarPrimitive.Item.displayName;
 
 const ProfileMenubarCheckboxItem = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.CheckboxItem>,
@@ -145,8 +145,8 @@ const ProfileMenubarCheckboxItem = React.forwardRef<
     </span>
     {children}
   </MenubarPrimitive.CheckboxItem>
-))
-ProfileMenubarCheckboxItem.displayName = MenubarPrimitive.CheckboxItem.displayName
+));
+ProfileMenubarCheckboxItem.displayName = MenubarPrimitive.CheckboxItem.displayName;
 
 const ProfileMenubarRadioItem = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.RadioItem>,
@@ -167,8 +167,8 @@ const ProfileMenubarRadioItem = React.forwardRef<
     </span>
     {children}
   </MenubarPrimitive.RadioItem>
-))
-ProfileMenubarRadioItem.displayName = MenubarPrimitive.RadioItem.displayName
+));
+ProfileMenubarRadioItem.displayName = MenubarPrimitive.RadioItem.displayName;
 
 const ProfileMenubarLabel = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Label>,
@@ -185,8 +185,8 @@ const ProfileMenubarLabel = React.forwardRef<
     )}
     {...props}
   />
-))
-ProfileMenubarLabel.displayName = MenubarPrimitive.Label.displayName
+));
+ProfileMenubarLabel.displayName = MenubarPrimitive.Label.displayName;
 
 const ProfileMenubarSeparator = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Separator>,
@@ -197,8 +197,8 @@ const ProfileMenubarSeparator = React.forwardRef<
     className={cn("-mx-1 my-1 h-px bg-muted", className)}
     {...props}
   />
-))
-ProfileMenubarSeparator.displayName = MenubarPrimitive.Separator.displayName
+));
+ProfileMenubarSeparator.displayName = MenubarPrimitive.Separator.displayName;
 
 const ProfileMenubarShortcut = ({
   className,
@@ -212,9 +212,9 @@ const ProfileMenubarShortcut = ({
       )}
       {...props}
     />
-  )
-}
-ProfileMenubarShortcut.displayname = "MenubarShortcut"
+  );
+};
+ProfileMenubarShortcut.displayname = "MenubarShortcut";
 
 export {
   ProfileMenubar,
@@ -233,4 +233,4 @@ export {
   ProfileMenubarGroup,
   ProfileMenubarSub,
   ProfileMenubarShortcut,
-}
+};

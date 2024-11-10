@@ -26,7 +26,7 @@ export const Heading = () => {
       )}
       {isAuthenticated && !isLoading && (
         <Button variant="default_gradient" className="text-[rgba(28,_15,_19,_0.50)] font-[400] w-[10.9375rem] h-[3.125rem] text-lg rounded-[3.125rem]" onClick={() => {
-          router.push("/play")
+          router.push("/play");
         }}>
           Play a game
         </Button>
@@ -50,5 +50,5 @@ export const Heading = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

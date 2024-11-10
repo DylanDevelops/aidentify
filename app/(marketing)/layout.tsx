@@ -29,6 +29,6 @@ const MarketingLayout = ({
       </div> 
     </>
   );
-}
+};
  
 export default MarketingLayout;

@@ -3,7 +3,7 @@ import { Navbar } from "@/components/navbar";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 
-const GameplayLayout = ({
+const LegalLayout = ({
   children
 } : {
     children: React.ReactNode;
@@ -12,8 +12,7 @@ const GameplayLayout = ({
     <>
       <div className="h-full">
         <Navbar />
-        {/* TODO: bg need to account for dark mode */}
-        <main className="h-full pt-40 bg-[radial-gradient(50%_50%_at_50%_50%,_#B7CECE_0%,_#E2E2E2_100%)]">
+        <main className="h-full pt-40">
           <Suspense fallback={(
             <>
               <div className="min-h-full flex flex-col">
@@ -32,4 +31,4 @@ const GameplayLayout = ({
   );
 };
  
-export default GameplayLayout;
+export default LegalLayout;

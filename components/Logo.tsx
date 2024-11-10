@@ -45,4 +45,4 @@ export const Logo = ({ clickable, href, showLogoText }: LogoProps) => {
   ): (
     logoContent
   );
-}
+};

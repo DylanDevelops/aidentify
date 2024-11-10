@@ -29,6 +29,6 @@ const AuthenticationLayout = ({
       </div> 
     </>
   );
-}
+};
  
 export default AuthenticationLayout;

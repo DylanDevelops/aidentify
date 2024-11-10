@@ -102,7 +102,7 @@ const GameResultPage = () => {
         <Footer />
       </div>
     </>
-  )
-}
+  );
+};
  
 export default GameResultPage;
