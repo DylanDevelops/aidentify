@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { GitBranch, Github, Mail } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 
 export const Footer = () => {
   return (
