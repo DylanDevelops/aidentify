@@ -72,7 +72,11 @@ const config: Config = {
           },
         },
       }
-  	}
+  	},
+    fontFamily: {
+      'Commissioner': 'Commissioner',
+      'RussoOne': 'Russo One',
+    }
   },
   plugins: [require("tailwindcss-animate")],
 };

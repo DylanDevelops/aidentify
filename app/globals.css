@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Commissioner';
+  src: url('./fonts/CommissionerVF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Russo One';
+  src: url('./fonts/RussoOneS.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body,
 :root {
@@ -9,7 +23,7 @@ body,
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Commissioner', Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
