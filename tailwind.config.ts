@@ -74,6 +74,7 @@ const config: Config = {
       }
   	},
     fontFamily: {
+      'NotoSans': 'Noto Sans',
       'Commissioner': 'Commissioner',
       'RussoOne': 'Russo One',
     }

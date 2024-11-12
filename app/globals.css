@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: 'Noto Sans';
+  src: url('./fonts/NotoSansVF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Commissioner';
   src: url('./fonts/CommissionerVF.ttf') format('truetype');
   font-weight: normal;
@@ -23,7 +30,7 @@ body,
 }
 
 body {
-  font-family: 'Commissioner', Arial, Helvetica, sans-serif;
+  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
