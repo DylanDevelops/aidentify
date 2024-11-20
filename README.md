@@ -12,9 +12,9 @@
   <em>Through images, text, and more, learn to identify AI generated content in the real world!</em>
 </p>
 <p align="center">
-  <a href="https://github.com/dylandevelops/aidentify/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/aidentify/aidentify?style=for-the-badge"></a>
-  <a href="https://www.codefactor.io/repository/github/aidentify/aidentify/overview/main"><img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/aidentify/aidentify?style=for-the-badge"></a>
-  <a href="https://github.com/dylandevelops/aidentify/releases"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/aidentify/aidentify?style=for-the-badge"></a>
+  <a href="https://github.com/dylandevelops/aidentify/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/dylandevelops/aidentify?style=for-the-badge"></a>
+  <a href="https://www.codefactor.io/repository/github/dylandevelops/aidentify/overview/main"><img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/dylandevelops/aidentify?style=for-the-badge"></a>
+  <a href="https://github.com/dylandevelops/aidentify/releases"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/dylandevelops/aidentify?style=for-the-badge"></a>
   <a href="https://makeapullrequest.com/"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge"></a>
 </p>
 
@@ -84,7 +84,7 @@ If you have any feedback, bug reports, or anything else, please create an [issue
 
 ## Authors
 
-Made by the AIdentify Team for the GCI Initiative
+Made by the AIdentify Team for the GCI Initiative.
 
 ## License
 
