@@ -14,7 +14,7 @@
 <p align="center">
   <a href="https://github.com/dylandevelops/aidentify/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/dylandevelops/aidentify?style=for-the-badge"></a>
   <a href="https://www.codefactor.io/repository/github/dylandevelops/aidentify/overview/main"><img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/dylandevelops/aidentify?style=for-the-badge"></a>
-  <a href="https://github.com/dylandevelops/aidentify/releases"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/dylandevelops/aidentify?style=for-the-badge"></a>
+  <a href="https://github.com/dylandevelops/aidentify/releases"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/dylandevelops/aidentify?display_name=release&style=for-the-badge"></a>
   <a href="https://makeapullrequest.com/"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge"></a>
 </p>
 
