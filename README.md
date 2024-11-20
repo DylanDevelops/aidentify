@@ -20,6 +20,8 @@
 
 ## Installation
 
+Note: Before beginning the installation, note that the only way you can make changes to the project is to test your changes; however, you cannot test them. This flaw is due to the close integration with the backend, which means we don't have a public contributor instance that anyone can use. We may make this in the future. The following steps are only for maintainers of this project.
+
 1. Run the following to make sure you are on the correct versions:
 
 ```bash
