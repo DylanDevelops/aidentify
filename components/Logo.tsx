@@ -21,7 +21,7 @@ export const Logo = ({ clickable, href, showLogoText }: LogoProps) => {
       <Image 
         src="/logos/Wordmark-beta.svg"
         height="200"
-        width="200"
+        width="252" // TODO: Change back to 200 when out of beta
         alt="Logo"
         className="dark:hidden"
       />
