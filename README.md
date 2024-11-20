@@ -59,7 +59,7 @@ npm run dev
 
 4. Open the website by visiting <http://localhost:3000> with your browser. When you make changes to a code file and save the file, the live preview will update on the url automatically.
 
-Let @DylanDevelops know if you have any questions
+Let [@DylanDevelops](https://www.github.com/dylandevelops) know if you have any questions
 
 ## Environment Variables
 
