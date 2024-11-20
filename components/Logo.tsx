@@ -19,9 +19,9 @@ export const Logo = ({ clickable, href, showLogoText }: LogoProps) => {
   const logoContent = (
     <div className="flex items-center gap-x-2">
       <Image 
-        src="/logos/Wordmark_Logo.svg"
+        src="/logos/Wordmark-beta.svg"
         height="200"
-        width="200"
+        width="252" // TODO: Change back to 200 when out of beta
         alt="Logo"
         className="dark:hidden"
       />
