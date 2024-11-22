@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <em>Through images, text, and more, learn to identify AI generated content in the real world!</em>
+  <em>Through images, text, and more, learn to identify AI-generated content in the real world!</em>
 </p>
 <p align="center">
   <a href="https://github.com/dylandevelops/aidentify/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/dylandevelops/aidentify?style=for-the-badge"></a>
