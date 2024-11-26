@@ -71,7 +71,7 @@ export const Navbar = () => {
                         <AvatarFallback>{user?.username[0].toUpperCase() ?? ""}</AvatarFallback>
                       </Avatar>
                     </ProfileMenubarTrigger>
-                    <ProfileMenubarContent>
+                    <ProfileMenubarContent align="end">
                       {/* <ProfileMenubarItem className="cursor-pointer" onClick={() => {
                         setTheme(theme === "light" ? "dark" : "light");
                       }}><Sun className="dark:block hidden h-4 w-4 mr-2" /><Moon className="dark:hidden block h-4 w-4 mr-2" /> Toggle Appearance</ProfileMenubarItem>
