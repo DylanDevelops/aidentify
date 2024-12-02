@@ -60,7 +60,7 @@ export const GameProvider = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [allScores, setAllScores] = useState<number[]>([]);
 
-  const levelIds = useQuery(api.game.getRandomLevels, { cacheBuster, numOfLevels: 2n });
+  const levelIds = useQuery(api.game.getRandomLevels, { cacheBuster, numOfLevels: 5n }); // ! Update this number to change number of levels pulled per game
   const imageSrcs = useQuery(api.game.getImageSrcs, currentLevelId ? { levelId: currentLevelId } : "skip");
   const imageIds = useQuery(api.game.getImageIds, currentLevelId ? { levelId: currentLevelId } : "skip");
   const checkGuess = useMutation(api.game.checkGuess);
