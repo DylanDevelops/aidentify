@@ -133,11 +133,9 @@ export const checkGuess = mutation({
     let correct = false;
 
     if(args.selectedImageId === AIGeneratedImageId._id) {
-      // TODO: Implement correct guess here
       score = 50;
       correct = true;
     } else {
-      // TODO: Implement incorrect guess here
       score = 0;
       correct = false;
     }

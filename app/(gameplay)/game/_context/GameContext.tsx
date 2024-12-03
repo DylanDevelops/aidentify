@@ -75,8 +75,17 @@ export const GameProvider = ({
 
   useEffect(() => {
     if(currentLevelId && imageSrcs && imageIds) {
-      setCurrentImageSrcUrls(imageSrcs.filter((src): src is string => src !== null));
-      setCurrentImageIds(imageIds);
+      // Pair the image src and id together
+      const pairedArray = imageSrcs
+        .map((src, index) => ( { src, id: imageIds[index] }))
+        .filter(pair => pair.src !== null);
+
+      // shuffle the order
+      const shuffledArray = pairedArray.sort(() => Math.random() - 0.5);
+
+      // set the values
+      setCurrentImageSrcUrls(shuffledArray.map(pair => pair.src).filter(src => src !== null) as string[]);
+      setCurrentImageIds(shuffledArray.map(pair => pair.id));
     }
   }, [currentLevelId, imageSrcs, imageIds]);
 
