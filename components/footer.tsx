@@ -10,7 +10,7 @@ export const Footer = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="link">
-            <p className="text-sm text-muted-foreground">© 2024 • AIdentify</p>
+            <p className="text-sm text-muted-foreground">© 2025 • AIdentify</p>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
