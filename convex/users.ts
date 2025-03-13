@@ -44,6 +44,7 @@ export const upsertFromClerk = internalMutation({
     if (user === null) {
       const userAttributes = {
         clerkId: data.id!,
+        isAdmin: false,
         username: data.username!,
         emails: data.email_addresses ? data.email_addresses.map(email => email.email_address) : [],
         level: 1n,

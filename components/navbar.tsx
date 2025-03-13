@@ -5,20 +5,21 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import { Logo } from "./Logo";
-import { CircleHelp, Flame, LogOut, Menu, Settings, Trophy } from "lucide-react";
+import { CircleHelp, Fingerprint, Flame, LogOut, Menu, Settings, Trophy } from "lucide-react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";
 import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarTrigger } from "./ui/profile-menubar";
-// import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { api } from "@/convex/_generated/api";
+import { useAdminCheck } from "@/hooks/use-admin-check";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
   const { isAuthenticated, isLoading } = useConvexAuth();
+  const { isCurrentUserAdmin, isAdminCheckLoading } = useAdminCheck();
   const clerkUser = useUser();
   const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
   const { signOut, openUserProfile } = useClerk();
@@ -45,7 +46,7 @@ export const Navbar = () => {
         <div className="flex justify-between items-center gap-x-2 w-full">
           <div className="mr-2 pt-6 pl-6 pb-2"><Logo clickable={true} href="/" /></div>
           <div className="ml-auto pt-6 pr-6 pb-2 space-x-2 flex items-center">
-            {!isAuthenticated  && !isLoading && (
+            {!isAuthenticated  && !isLoading && !isAdminCheckLoading && (
               <SignInButton>
                 <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[700] w-[6.25rem] h-[3.125rem] text-lg rounded-[3.125rem]">
                   Login
@@ -55,6 +56,7 @@ export const Navbar = () => {
             {
               isAuthenticated  
             && !isLoading 
+            && !isAdminCheckLoading
             && !isUserLoading 
             && user?.picture !== undefined && 
             (
@@ -154,6 +156,11 @@ export const Navbar = () => {
                 "text-[#6E7E85] font-[400]",
                 pathname === "/leaderboard" && "stroke-[3]"
               )} /></Button>
+            {isCurrentUserAdmin && (
+              <Button variant="ghost" size="icon" onClick={() => {
+                router.push("/admin");
+              }}><Fingerprint className="text-[#6E7E85] font-[400]" /></Button>
+            )}
           </div>
         </div>
       </div>
