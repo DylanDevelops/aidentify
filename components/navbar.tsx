@@ -142,24 +142,27 @@ export const Navbar = () => {
             {isAuthenticated && (
               <Button variant="ghost" size="icon" onClick={() => {
                 openUserProfile();
-              }}><Settings className="text-[#6E7E85] font-[400]" /></Button>
+              }}><Settings className="text-[#6E7E85] font-[400] cursor-pointer" /></Button>
             )}
             <Button variant="ghost" size="icon" onClick={() => {
               router.push("/help");
             }}><CircleHelp className={cn(
-                "text-[#6E7E85] font-[400]",
+                "text-[#6E7E85] font-[400] cursor-pointer",
                 pathname === "/help" && "stroke-[3]"
               )} /></Button>
             <Button variant="ghost" size="icon" onClick={() => {
               router.push("/leaderboard");
             }}><Trophy className={cn(
-                "text-[#6E7E85] font-[400]",
+                "text-[#6E7E85] font-[400] cursor-pointer",
                 pathname === "/leaderboard" && "stroke-[3]"
               )} /></Button>
             {isCurrentUserAdmin && (
               <Button variant="ghost" size="icon" onClick={() => {
                 router.push("/admin");
-              }}><Fingerprint className="text-[#6E7E85] font-[400]" /></Button>
+              }}><Fingerprint className={cn(
+                  "text-[#6E7E85] font-[400] cursor-pointer",
+                  pathname === "/admin" && "stroke-[3]"
+                )} /></Button>
             )}
           </div>
         </div>
