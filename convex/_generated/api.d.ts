@@ -17,6 +17,7 @@ import type {
 } from "convex/server";
 import type * as game from "../game.js";
 import type * as http from "../http.js";
+import type * as levelUpload from "../levelUpload.js";
 import type * as users from "../users.js";
 
 /**
@@ -30,6 +31,7 @@ import type * as users from "../users.js";
 declare const fullApi: ApiFromModules<{
   game: typeof game;
   http: typeof http;
+  levelUpload: typeof levelUpload;
   users: typeof users;
 }>;
 export declare const api: FilterApi<
