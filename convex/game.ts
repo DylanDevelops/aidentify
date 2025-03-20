@@ -141,12 +141,12 @@ export const checkGuess = mutation({
     }
 
     const totalPlays = level.totalPlays + 1n;
-    const correctGuesses = correct ? (level.correctGuesses + 1n) : level.correctGuesses;
-    const globalAccuracy = totalPlays > 0n ? ((correctGuesses * 100n) / totalPlays) : 0n;
+    const correctAnswers = correct ? (level.correctAnswers + 1n) : level.correctAnswers;
+    const globalAccuracy = totalPlays > 0n ? ((correctAnswers * 100n) / totalPlays) : 0n;
 
-    await ctx.db.patch(args.levelId, {
+    await ctx.db.patch(level._id, {
       totalPlays,
-      correctGuesses
+      correctAnswers
     });
 
     return {

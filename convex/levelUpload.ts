@@ -69,7 +69,7 @@ export const createLevelWithImageIds = mutation({
       classification: args.classification,
       hints: args.hints,
       totalPlays: 0n,
-      correctGuesses: 0n,
+      correctAnswers: 0n,
     });
   },
 });
