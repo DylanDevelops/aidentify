@@ -25,6 +25,7 @@ interface IGameContext {
   nextRound: () => void;
   scoreAwarded: number | null;
   isLoading: boolean;
+  globalAccuracy: number;
 }
 
 const GameContext = createContext<IGameContext | null>(null);
@@ -56,6 +57,7 @@ export const GameProvider = ({
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [scoreAwarded, setScoreAwarded] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [globalAccuracy, setGlobalAccuracy] = useState(0);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [allScores, setAllScores] = useState<number[]>([]);
@@ -113,6 +115,8 @@ export const GameProvider = ({
 
       setScoreAwarded(result.score);
       setAllScores(prevScores => [...prevScores, result.score]);
+
+      setGlobalAccuracy(Number(result.globalAccuracy));
     } catch (error) {
       console.error("Error submitting guess:", error);
     } finally {
@@ -149,6 +153,7 @@ export const GameProvider = ({
       setHints(null);
       setWasCorrect(null);
       setScoreAwarded(null);
+      setGlobalAccuracy(0);
     }
   };
 
@@ -182,7 +187,8 @@ export const GameProvider = ({
         submitGuess,
         nextRound,
         scoreAwarded,
-        isLoading
+        isLoading,
+        globalAccuracy
       }}>
         {children}
       </GameContext.Provider>
@@ -210,7 +216,8 @@ export const GameProvider = ({
       submitGuess,
       nextRound,
       scoreAwarded,
-      isLoading
+      isLoading,
+      globalAccuracy
     }}>
       {children}
     </GameContext.Provider>

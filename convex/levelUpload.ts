@@ -68,6 +68,8 @@ export const createLevelWithImageIds = mutation({
       groupName: args.groupName,
       classification: args.classification,
       hints: args.hints,
+      totalPlays: 0n,
+      correctGuesses: 0n,
     });
   },
 });

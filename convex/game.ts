@@ -140,6 +140,15 @@ export const checkGuess = mutation({
       correct = false;
     }
 
+    const totalPlays = level.totalPlays + 1n;
+    const correctGuesses = correct ? (level.correctGuesses + 1n) : level.correctGuesses;
+    const globalAccuracy = totalPlays > 0n ? ((correctGuesses * 100n) / totalPlays) : 0n;
+
+    await ctx.db.patch(args.levelId, {
+      totalPlays,
+      correctGuesses
+    });
+
     return {
       correct,
       correctImageId: AIGeneratedImageId._id,
@@ -148,6 +157,7 @@ export const checkGuess = mutation({
       hints: level.hints,
       aiImagePrompt: AIGeneratedImagePrompt,
       score,
+      globalAccuracy: globalAccuracy
     };
   }
 });

@@ -19,7 +19,8 @@ const ImageGame = () => {
     imageHasBeenSelected,
     submitGuess,
     nextRound,
-    isLoading
+    isLoading,
+    globalAccuracy
   } = useGame()!;
 
   const handleSubmittingGuess = (selectedImageId: Id<"images">) => {
@@ -83,7 +84,7 @@ const ImageGame = () => {
               ) : (
                 <h1 className="text-[1.5625rem] text-[#6E7E85] font-bold mb-4">Sorry! You selected the incorrect image!</h1>
               )}
-              <p className="text-[1.25rem] text-[rgba(86,_83,_115,_0.75)] font-normal mb-4">70% of users guessed this image correctly</p>
+              <p className="text-[1.25rem] text-[rgba(86,_83,_115,_0.75)] font-normal mb-4">{globalAccuracy}% of users guessed this image correctly</p>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-center text-center gap-10 md:gap-[2rem] px-6 py-10 md:py-2">
               <div className="w-[18.75rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none transition-transform duration-300">
