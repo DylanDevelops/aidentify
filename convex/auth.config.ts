@@ -1,7 +1,7 @@
 const config = {
   providers: [
     {
-      domain: "https://together-ape-40.clerk.accounts.dev",
+      domain: "https://clerk.playaidentify.com",
       applicationID: "convex",
     },
   ]};
