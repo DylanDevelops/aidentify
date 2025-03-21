@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import Rand from "rand-seed";
 
 /**
  * Retrieves a specified number of random levels from the database.
@@ -7,11 +8,12 @@ import { mutation, query } from "./_generated/server";
  * @param {Object} args - The arguments object.
  * @param {number} args.cacheBuster - A number used to bust the cache.
  * @param {bigint} args.numOfLevels - The number of levels to retrieve.
+ * @param {string} args.seed - The seed for random number generation.
  * @returns {Promise<string[]>} A promise that resolves to an array of level IDs.
  * @throws {Error} If there are not enough levels in the database to fulfill the request.
  */
 export const getRandomLevels = query({
-  args: { cacheBuster: v.number(), numOfLevels: v.int64() },
+  args: { cacheBuster: v.number(), numOfLevels: v.int64(), seed: v.string() },
   handler: async (ctx, args) => {
     const levels = await ctx.db.query("levels").collect();
 
@@ -21,8 +23,10 @@ export const getRandomLevels = query({
 
     const selectedLevels = [];
 
+    const rand = new Rand(args.seed);
+
     for(let i = 0; i < args.numOfLevels; i++) {
-      const randomIndex = Math.floor(Math.random() * levels.length);
+      const randomIndex = Math.floor(rand.next() * levels.length);
       selectedLevels[i] = levels[randomIndex];
       levels.splice(randomIndex, 1);
     }
