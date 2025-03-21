@@ -1,6 +1,6 @@
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { useMutation, useQuery } from "convex/react";
+import { useConvex, useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -25,6 +25,7 @@ interface IGameContext {
   nextRound: () => void;
   scoreAwarded: number | null;
   isLoading: boolean;
+  globalAccuracy: number;
 }
 
 const GameContext = createContext<IGameContext | null>(null);
@@ -35,6 +36,7 @@ export const GameProvider = ({
   children: React.ReactNode
 }) => {
   const router = useRouter();
+  const convex = useConvex();
 
   const [levels, setLevels] = useState<Id<"levels">[]>([]);
   const [currentRound, setCurrentRound] = useState(0);
@@ -56,22 +58,26 @@ export const GameProvider = ({
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [scoreAwarded, setScoreAwarded] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [globalAccuracy, setGlobalAccuracy] = useState(0);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [allScores, setAllScores] = useState<number[]>([]);
 
-  const levelIds = useQuery(api.game.getRandomLevels, { cacheBuster, numOfLevels: 5n }); // ! Update this number to change number of levels pulled per game
+  const [randomSeed] = useState(Math.random().toString());
   const imageSrcs = useQuery(api.game.getImageSrcs, currentLevelId ? { levelId: currentLevelId } : "skip");
   const imageIds = useQuery(api.game.getImageIds, currentLevelId ? { levelId: currentLevelId } : "skip");
   const checkGuess = useMutation(api.game.checkGuess);
 
   useEffect(() => {
-    if(levelIds) {
+    const fetchLevels = async () => {
+      const levelIds = await convex.query(api.game.getRandomLevels, { cacheBuster, numOfLevels: 5n, seed: randomSeed });
       setLevels(levelIds);
       setCurrentRound(1);
       setCurrentLevel(levelIds[0]);
-    }
-  }, [levelIds]);
+    };
+
+    fetchLevels();
+  }, [convex, cacheBuster, randomSeed]);
 
   useEffect(() => {
     if(currentLevelId && imageSrcs && imageIds) {
@@ -113,6 +119,8 @@ export const GameProvider = ({
 
       setScoreAwarded(result.score);
       setAllScores(prevScores => [...prevScores, result.score]);
+
+      setGlobalAccuracy(Number(result.globalAccuracy));
     } catch (error) {
       console.error("Error submitting guess:", error);
     } finally {
@@ -149,16 +157,17 @@ export const GameProvider = ({
       setHints(null);
       setWasCorrect(null);
       setScoreAwarded(null);
+      setGlobalAccuracy(0);
     }
   };
 
   useEffect(() => {
-    if(levelIds === undefined || (currentLevelId && imageSrcs === undefined)) {
+    if(levels.length === 0 || (currentLevelId && imageSrcs === undefined)) {
       setIsLoading(true);
     } else {
       setIsLoading(false);
     }
-  }, [levelIds, currentLevelId, imageSrcs]);
+  }, [levels, currentLevelId, imageSrcs]);
 
   if(isLoading) {
     return (
@@ -182,7 +191,8 @@ export const GameProvider = ({
         submitGuess,
         nextRound,
         scoreAwarded,
-        isLoading
+        isLoading,
+        globalAccuracy
       }}>
         {children}
       </GameContext.Provider>
@@ -210,7 +220,8 @@ export const GameProvider = ({
       submitGuess,
       nextRound,
       scoreAwarded,
-      isLoading
+      isLoading,
+      globalAccuracy
     }}>
       {children}
     </GameContext.Provider>

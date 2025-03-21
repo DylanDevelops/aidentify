@@ -30,5 +30,7 @@ export default defineSchema({
     groupName: v.string(),
     classification: v.string(),
     hints: v.array(v.string()),
+    totalPlays: v.int64(),
+    correctAnswers: v.int64(),
   }),
 });
