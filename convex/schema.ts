@@ -8,7 +8,7 @@ export default defineSchema({
     username: v.string(),
     emails: v.array(v.string()),
     level: v.int64(),
-    currentXP: v.int64(),
+    points: v.int64(),
     picture: v.string(),
     currentStreak: v.int64(),
     lastParticipationDate: v.string(),
