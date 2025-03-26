@@ -165,3 +165,60 @@ export const checkGuess = mutation({
     };
   }
 });
+
+
+/**
+ * Mutation to finish a game and update user points.
+ *
+ * @param {Object} args - The arguments object.
+ * @param {string} [args.userID] - The optional ID of the user.
+ * @param {number} args.points - The points earned in the game.
+ * @returns {Promise<Object>} The result object containing the earned points.
+ *
+ * @example
+ * // Example usage:
+ * const result = await finishGame({ userID: "user123", points: 50 });
+ * console.log(result.earnedPoints); // Outputs the total earned points
+ *
+ * @remarks
+ * If the userID is not provided, the function will return the points earned in the game.
+ * If the userID is provided but the user is not found, the function will also return the points earned in the game.
+ * If the user is found, the function will add the current streak to the points earned and update the user's total points.
+ */
+export const finishGame = mutation({
+  args: { userID: v.optional(v.id("users")), points: v.int64() },
+  handler: async(ctx, args) => {
+    if(!args.userID) {
+      console.log("No user id");
+      return {
+        earnedPoints: args.points
+      };
+    }
+
+    let user;
+
+    if(args.userID) {
+      user = await ctx.db
+        .query("users")
+        .withIndex("by_id", (q) => q.eq("_id", args.userID!))
+        .unique();
+    }
+
+    if(!user) {
+      console.log("no user");
+      return {
+        earnedPoints: args.points
+      };
+    }
+
+    const pointsEarned = args.points + user.currentStreak;
+
+    await ctx.db.patch(args.userID, {
+      points: user.points + pointsEarned
+    });
+
+    return {
+      earnedPoints: pointsEarned
+    };
+  }
+});
