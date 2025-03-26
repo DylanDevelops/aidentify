@@ -1,7 +1,7 @@
 const config = {
   providers: [
     {
-      domain: "https://clerk.playaidentify.com",
+      domain: process.env.CLERK_DOMAIN,
       applicationID: "convex",
     },
   ]};

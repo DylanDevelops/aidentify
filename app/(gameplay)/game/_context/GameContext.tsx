@@ -1,5 +1,6 @@
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+import { useUser } from "@clerk/clerk-react";
 import { useConvex, useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -38,6 +39,9 @@ export const GameProvider = ({
   const router = useRouter();
   const convex = useConvex();
 
+  const clerkUser = useUser();
+  const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
+
   const [levels, setLevels] = useState<Id<"levels">[]>([]);
   const [currentRound, setCurrentRound] = useState(0);
   const [score, setScore] = useState(0);
@@ -67,6 +71,7 @@ export const GameProvider = ({
   const imageSrcs = useQuery(api.game.getImageSrcs, currentLevelId ? { levelId: currentLevelId } : "skip");
   const imageIds = useQuery(api.game.getImageIds, currentLevelId ? { levelId: currentLevelId } : "skip");
   const checkGuess = useMutation(api.game.checkGuess);
+  const finishGame = useMutation(api.game.finishGame);
 
   useEffect(() => {
     const fetchLevels = async () => {
@@ -128,15 +133,17 @@ export const GameProvider = ({
     }
   };
 
-  const nextRound = () => {
+  const nextRound = async () => {
     const nextRoundNumber = currentRound + 1;
 
     if(nextRoundNumber > levels.length) {      
+      const endOfGameResult = await finishGame({ points: BigInt(score), userID: user?._id ?? undefined });
+
       const query = new URLSearchParams({
         gamemode: "images", // TODO: Change this based on actual gamemode in the future
         correct: correctGuesses.toString(),
         rounds: levels.length.toString(),
-        points: score.toString(),
+        points: endOfGameResult.earnedPoints.toString(),
       });
 
       router.push(`/results?${query.toString()}`);
