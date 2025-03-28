@@ -15,6 +15,7 @@ import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenub
 import { usePathname, useRouter } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 import { useAdminCheck } from "@/hooks/use-admin-check";
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
@@ -144,12 +145,27 @@ export const Navbar = () => {
                 openUserProfile();
               }}><Settings className="text-[#6E7E85] font-[400] cursor-pointer" /></Button>
             )}
-            <Button variant="ghost" size="icon" onClick={() => {
-              router.push("/help");
-            }}><CircleHelp className={cn(
-                "text-[#6E7E85] font-[400] cursor-pointer",
-                pathname === "/help" && "stroke-[3]"
-              )} /></Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <CircleHelp className="text-[#6E7E85] font-[400] cursor-pointer" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:rounded-[1.875rem] p-10">
+                <div className="space-y-5">
+                  <DialogHeader>
+                    <h1 className="font-bold text-[1.875rem] text-[#6E7E85]">How to Play</h1>
+                    <h2 className="font-normal text-[1.4375rem] text-[#6E7E85]">Choose which image is AI Generated</h2>
+                  </DialogHeader>
+                  <ul className="list-disc pl-6">
+                    <li className="text-[#6E7E85]">Click on your guess to see the correct answer.</li>
+                    <li className="text-[#6E7E85]">Use the hint below to help you decide.</li>
+                    <li className="text-[#6E7E85]">As you play, you will get more hints to help you learn to identify AI generated images.</li>
+                  </ul>
+                  <p className="text-[#6E7E85]"><span className="font-bold">Tip:</span> Try <span className="font-bold">Text Mode</span> or the <span className="font-bold">Daily Challenge</span> for additional practice! <span className="font-bold">Sign up</span> for an account to save your progress.</p>
+                </div>
+              </DialogContent>
+            </Dialog>
             <Button variant="ghost" size="icon" onClick={() => {
               router.push("/leaderboard");
             }}><Trophy className={cn(
