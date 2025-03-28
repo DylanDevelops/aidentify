@@ -33,6 +33,7 @@ export const metadata: Metadata = {
       }
     ]
   },
+  metadataBase: new URL("https://playaidentify.com"),
   openGraph: {
     images: '/social-images/opengraph-image.png',
   },
