@@ -1,6 +1,5 @@
 "use client";
 
-import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
