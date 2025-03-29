@@ -139,6 +139,38 @@ export const updateStreak = internalMutation({
 });
 
 /**
+ * Retrieves the top 3 leaderboard entries based on user points.
+ *
+ * This query fetches the top users from the "users" table, ordered
+ * in descending order by their points. It extracts and returns their
+ * scores, profile pictures, and usernames.
+ *
+ * @returns An object containing:
+ * - `scores`: An array of the top 3 user scores.
+ * - `profilePictures`: An array of the top 3 user profile picture URLs.
+ * - `usernames`: An array of the top 3 usernames.
+ */
+export const getLeaderboardEntries = query({
+  async handler(ctx) {
+    const topUsers = await ctx.db
+      .query("users")
+      .withIndex("byPoints")
+      .order("desc")
+      .take(3);
+
+    const scores = topUsers.map((user) => user.points);
+    const profilePictures = topUsers.map((user) => user.picture);
+    const usernames = topUsers.map((user) => user.username);
+
+    return {
+      scores,
+      profilePictures,
+      usernames,
+    };
+  }
+});
+
+/**
  * Query to get a user by their username.
  *
  * This query takes a username as an argument and retrieves the corresponding user document
