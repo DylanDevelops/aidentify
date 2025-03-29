@@ -12,10 +12,12 @@ const LeaderboardPage = () => {
       <div className="min-h-full flex flex-col">
         <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 pb-10">
           <Medal className="w-20 h-20 text-[hsla(198,_9%,_48%,_1)]" />
-          <h1 className="text-[2.5rem] font-bold text-[hsla(198,_9%,_48%,_0.75)] pb-10">Leaderboard</h1>
+          <h1 className="text-[2.5rem] font-bold text-[hsla(198,_9%,_48%,_0.75)] pb-20">Leaderboard</h1>
           <div className="flex flex-col items-center gap-y-[1.56rem]">
             <div className="flex flex-row gap-x-[1.56rem] items-end">
-              <div className="podium podium-1 w-[12.5rem] h-[12.5rem] rounded-[1.875rem] flex flex-col items-center">
+              <div className="podium podium-1 w-[12.5rem] h-[12.5rem] rounded-[1.875rem] flex flex-col items-center relative">
+                <div className="absolute top-[-1.5rem] text-[2rem] font-bold text-[hsla(246,_16%,_39%,_0.75)] -translate-y-20">#2</div>
+                <div className="absolute w-[6.25rem] h-[6.25rem] -translate-y-1/2 avatar-frame rounded-full"></div>
                 <Avatar className="w-[5.25rem] h-[5.25rem] -translate-y-1/2">
                   <AvatarImage src="https://github.com/dylandevelops.png" />
                   <AvatarFallback>...</AvatarFallback>
@@ -28,8 +30,9 @@ const LeaderboardPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="podium podium-2 w-[12.5rem] h-[15.63rem] rounded-[1.875rem] flex flex-col items-center">
-                <Avatar className="w-[5.25rem] h-[5.25rem] -translate-y-1/2">
+              <div className="podium podium-2 w-[12.5rem] h-[15.63rem] rounded-[1.875rem] flex flex-col items-center relative">
+                <div className="absolute top-[-1.5rem] text-[2rem] font-bold text-[hsla(246,_16%,_39%,_0.75)] -translate-y-20">#1</div>
+                <div className="absolute w-[6.25rem] h-[6.25rem] -translate-y-1/2 avatar-frame rounded-full"></div>               <Avatar className="w-[5.25rem] h-[5.25rem] -translate-y-1/2">
                   <AvatarImage src="https://github.com/dylandevelops.png" />
                   <AvatarFallback>...</AvatarFallback>
                 </Avatar>
@@ -41,7 +44,9 @@ const LeaderboardPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="podium podium-3 w-[12.5rem] h-[9.38rem] rounded-[1.875rem] flex flex-col items-center">
+              <div className="podium podium-3 w-[12.5rem] h-[9.38rem] rounded-[1.875rem] flex flex-col items-center relative">
+                <div className="absolute top-[-1.5rem] text-[2rem] font-bold text-[hsla(246,_16%,_39%,_0.75)] -translate-y-20">#3</div>
+                <div className="absolute w-[6.25rem] h-[6.25rem] -translate-y-1/2 avatar-frame rounded-full"></div>
                 <Avatar className="w-[5.25rem] h-[5.25rem] -translate-y-1/2">
                   <AvatarImage src="https://github.com/dylandevelops.png" />
                   <AvatarFallback>...</AvatarFallback>

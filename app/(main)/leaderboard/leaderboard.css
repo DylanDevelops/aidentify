@@ -17,3 +17,7 @@
 .podium-4 {
   background: linear-gradient(101deg, #B7CECE 0%, #BBBAC6 100%);
 }
+
+.avatar-frame {
+  background: rgba(110, 126, 133, 0.50);
+}
