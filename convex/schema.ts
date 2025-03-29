@@ -15,7 +15,8 @@ export default defineSchema({
   })
     .index("byClerkId", ["clerkId"])
     .index("byUsername", ["username"])
-    .index("byLevel", ["level"]),
+    .index("byLevel", ["level"])
+    .index("byPoints", ["points"]),
 
   images: defineTable({
     storageId: v.id("_storage"),
