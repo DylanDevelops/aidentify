@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { Github, Mail } from "lucide-react";
+import { Github, GlobeLock, Mail, Scale } from "lucide-react";
 import VersionButton from "./version-button";
 
 export const Footer = () => {
@@ -16,12 +16,12 @@ export const Footer = () => {
         <DropdownMenuContent align="start">
           <Link href="/privacy-policy">
             <DropdownMenuItem>
-              Privacy Policy
+              <GlobeLock className="w-4 h-4" /> Privacy Policy
             </DropdownMenuItem>
           </Link>
           <Link href="/terms-and-conditions">
             <DropdownMenuItem>
-              Terms & Conditions
+              <Scale className="w-4 h-4" /> Terms & Conditions
             </DropdownMenuItem>
           </Link>
         </DropdownMenuContent>
