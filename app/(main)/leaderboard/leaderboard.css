@@ -1,0 +1,19 @@
+.podium {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.podium-1 {
+  background: linear-gradient(239deg, #B7CECE 0%, rgba(110, 125, 133, 0.85) 219.48%);
+}
+
+.podium-2 {
+  background: linear-gradient(233deg, #B7CECE 0%, rgba(110, 125, 133, 0.85) 247.73%);
+}
+
+.podium-3 {
+  background: linear-gradient(185deg, #B7CECE 7.64%, rgba(110, 125, 133, 0.85) 453.07%);
+}
+
+.podium-4 {
+  background: linear-gradient(101deg, #B7CECE 0%, #BBBAC6 100%);
+}
