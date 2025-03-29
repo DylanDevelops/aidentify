@@ -18,7 +18,22 @@ import { useAdminCheck } from "@/hooks/use-admin-check";
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog";
 
 export const Navbar = () => {
-  const scrolled = useScrollTop();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const { isAuthenticated, isLoading } = useConvexAuth();
   const { isCurrentUserAdmin, isAdminCheckLoading } = useAdminCheck();
   const clerkUser = useUser();
