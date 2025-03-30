@@ -63,11 +63,12 @@ export const createLevelWithImageIds = mutation({
   },
 
   handler: async (ctx, args) => {
+    const filteredHints = args.hints.filter((hint) => hint.trim() !== "");
     return await ctx.db.insert("levels", {
       images: [args.aiImageId, args.normalImageId],
       groupName: args.groupName,
       classification: args.classification,
-      hints: args.hints,
+      hints: filteredHints,
       totalPlays: 0n,
       correctAnswers: 0n,
     });
