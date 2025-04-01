@@ -11,15 +11,15 @@ const AboutPage = () => {
     <>
       <FancyBackgroundGradient />
       <div className="min-h-full flex flex-col">
-        <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
+        <section id="home" className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <Image src="/logos/AIdentify-Story.svg" width={1} height={1} alt="AIdentify Logo for the About Page" className="w-[15rem] sm:w-[20rem] md:w-[32.48944rem]" />
           <p className="px-5 sm:px-20 md:px-48 text-[#565373] text-lg font-normal">AIdentify is a project of the <Link href="https://www.chapman.edu/about/our-home/keck-center/gci/index.aspx" target="_blank" className="font-bold underline">Grand Challenges Initiative</Link> at <Link href="https://www.chapman.edu/" target="_blank" className="font-bold underline">Chapman University</Link>, focussed on teaching AI identification through repetition.</p>
-        </div>
-        <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
+        </section>
+        <section id="problem" className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <h2 className="text-[1.875rem] font-bold bg-[linear-gradient(208deg,_#565373_10%,_#6E7E85_93.82%)] bg-clip-text text-transparent">The Problem</h2>
           <p className="px-5 sm:px-20 md:px-48 text-[#6E7E85] font-normal text-justify"><span className="font-bold">AI Misinformation</span> has skyrocketed since the introduction of generative AI tools like <span className="font-bold">OpenAI’s DALL·E</span>, <span className="font-bold">Adobe Firefly</span>, and <span className="font-bold">Google Gemini</span>, generating millions of images every day. The public has an increased interest in generated content, with <span className="font-bold">millions of users</span> experimenting with these models. Due to this, AI content has become <span className="font-bold">less distinguishable</span> from authentic content and it has become harder and harder to detect AI-generated content.</p>
-        </div>
-        <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
+        </section>
+        <section id="solution" className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <h2 className="text-[1.875rem] font-bold bg-[linear-gradient(208deg,_#565373_10%,_#6E7E85_93.82%)] bg-clip-text text-transparent">The Solution</h2>
           <div className="flex flex-col lg:flex-row gap-12">
             <SolutionCard 
@@ -40,8 +40,8 @@ const AboutPage = () => {
               className="lg:hover:rotate-2"
             />
           </div>
-        </div>
-        <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
+        </section>
+        <section id="team" className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <h2 className="text-[1.875rem] font-bold bg-[linear-gradient(208deg,_#565373_10%,_#6E7E85_93.82%)] bg-clip-text text-transparent">The Team</h2>
           <div className="flex flex-row flex-wrap gap-6 px-4 sm:px-8 md:px-16 max-w-[60rem] justify-center items-center">
             <TeamCard
@@ -75,10 +75,10 @@ const AboutPage = () => {
               noPfp
             />
           </div>
-        </div>
-        <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
+        </section>
+        <section className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <Image src="/logos/chapman-and-fowler-logo.png" width={500} height={500} unoptimized alt="Chapman University and Fowler School of Engineering Logos" className="w-[20rem] lg:w-[30rem]" />
-        </div>
+        </section>
         <Footer />
       </div>
     </>
