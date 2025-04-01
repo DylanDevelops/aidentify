@@ -3,18 +3,20 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
-import { Logo } from "./Logo";
+import { Logo } from "../Logo";
 import { CircleHelp, Fingerprint, Flame, LogOut, Menu, Settings, Trophy } from "lucide-react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { useEffect, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import Link from "next/link";
-import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarTrigger } from "./ui/profile-menubar";
+import { ProfileMenubar, ProfileMenubarContent, ProfileMenubarItem, ProfileMenubarMenu, ProfileMenubarTrigger } from "../ui/profile-menubar";
 import { usePathname, useRouter } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 import { useAdminCheck } from "@/hooks/use-admin-check";
-import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "../ui/dialog";
+
+import "./navbar.css";
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);

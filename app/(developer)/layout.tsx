@@ -1,7 +1,7 @@
 "use client";
 
 import { Footer } from "@/components/footer";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/navbar/navbar";
 import { useAdminCheck } from "@/hooks/use-admin-check";
 import { useConvexAuth } from "convex/react";
 import { Loader2 } from "lucide-react";
