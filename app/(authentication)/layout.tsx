@@ -1,5 +1,5 @@
 import { Footer } from "@/components/footer";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/navbar/navbar";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 
