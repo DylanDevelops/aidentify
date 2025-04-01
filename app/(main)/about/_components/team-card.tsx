@@ -13,7 +13,7 @@ const TeamCard: React.FC<TeamCardProps> = ({ name, title, linkedInURL, noPfp = f
   const content = (
     <>
       <Image
-        src={noPfp ? "/team/placeholder-user.png" : `/team/${name.toLowerCase().replace(" ", "-")}.png`}
+        src={noPfp ? "/team/placeholder-user.png" : `/team/${name.toLowerCase().replace(/ /g, "-")}.png`}
         width={100}
         height={100}
         unoptimized
