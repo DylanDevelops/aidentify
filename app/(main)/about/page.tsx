@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SolutionCard from "./_components/solution-card";
 import { GraduationCap, MousePointerClick, RotateCcw } from "lucide-react";
+import TeamCard from "./_components/team-card";
 
 const AboutPage = () => {
   return ( 
@@ -42,8 +43,37 @@ const AboutPage = () => {
         </div>
         <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <h2 className="text-[1.875rem] font-bold bg-[linear-gradient(208deg,_#565373_10%,_#6E7E85_93.82%)] bg-clip-text text-transparent">The Team</h2>
-          <div className="flex flex-row gap-12">
-            [ COMING SOON ]
+          <div className="flex flex-row flex-wrap gap-6 px-4 sm:px-8 md:px-16 max-w-[60rem] justify-center items-center">
+            <TeamCard
+              name="Dylan Ravel"
+              title="Development"
+              linkedInURL="https://www.linkedin.com/in/dylanravel/"
+            />
+            <TeamCard
+              name="Divi Newton"
+              title="Design/Curriculum"
+              linkedInURL="https://www.linkedin.com/in/divinewton/"
+            />
+            <TeamCard
+              name="Noslen Cruz-Muniz"
+              title="Design/Curriculum"
+              noPfp
+            />
+            <TeamCard
+              name="Cristian Melgoza"
+              title="Development"
+              noPfp
+            />
+            <TeamCard
+              name="Jack Flanagan"
+              title="Development"
+              noPfp
+            />
+            <TeamCard
+              name="Josh McCarthy"
+              title="Design/Curriculum"
+              noPfp
+            />
           </div>
         </div>
         <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
