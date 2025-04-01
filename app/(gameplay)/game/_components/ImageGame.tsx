@@ -39,7 +39,7 @@ const ImageGame = () => {
             <p className="text-[1.125rem] text-[#6E7E85]">Select the AI Generated Image</p>
           </div>
           <div className="flex flex-col min-[960px]:flex-row items-center justify-center text-center gap-10 flex-1 px-6 py-10 xl:py-2">
-            <div className="w-[20rem] h-[20rem] sm:w-[25rem] sm:h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none sm:hover:scale-105 cursor-pointer transition-transform duration-300" onClick={() => {
+            <div className="w-[20rem] h-[20rem] sm:w-[25rem] sm:h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none min-[960px]:hover:scale-105 cursor-pointer transition-transform duration-300" onClick={() => {
               if(isLoading) return;
 
               handleSubmittingGuess(currentImageIds![0]);
@@ -52,7 +52,7 @@ const ImageGame = () => {
                 <Image src={currentImageSrcUrls[0]} unoptimized layout="fill" objectFit="cover" draggable={false} alt="Image Option" className="absolute inset-0 w-full h-full object-cover" />
               )}
             </div>
-            <div className="w-[20rem] h-[20rem] sm:w-[25rem] sm:h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none sm:hover:scale-105 cursor-pointer transition-transform duration-300" onClick={() => {
+            <div className="w-[20rem] h-[20rem] sm:w-[25rem] sm:h-[25rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none min-[960px]:hover:scale-105 cursor-pointer transition-transform duration-300" onClick={() => {
               if(isLoading) return;
 
               handleSubmittingGuess(currentImageIds![1]);
