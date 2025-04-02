@@ -13,7 +13,7 @@ const AboutPage = () => {
       <div className="min-h-full flex flex-col">
         <section id="home" className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <Image src="/logos/AIdentify-Story.svg" width={100} height={100} unoptimized alt="AIdentify Logo for the About Page" className="w-[15rem] sm:w-[20rem] md:w-[32.48944rem]" />
-          <p className="px-5 sm:px-20 md:px-48 text-[#565373] text-lg font-normal">AIdentify is a project of the <Link href="https://www.chapman.edu/about/our-home/keck-center/gci/index.aspx" target="_blank" className="font-bold underline">Grand Challenges Initiative</Link> at <Link href="https://www.chapman.edu/" target="_blank" className="font-bold underline">Chapman University</Link>, focussed on teaching AI identification through repetition.</p>
+          <p className="px-5 sm:px-20 md:px-48 text-[#565373] text-lg font-normal">AIdentify is a project of the <Link href="https://www.chapman.edu/about/our-home/keck-center/gci/index.aspx" target="_blank" className="font-bold hover:underline">Grand Challenges Initiative</Link> at <Link href="https://www.chapman.edu/" target="_blank" className="font-bold hover:underline">Chapman University</Link>, focussed on teaching AI identification through repetition.</p>
         </section>
         <section id="problem" className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <h2 className="text-[1.875rem] font-bold bg-[linear-gradient(208deg,_#565373_10%,_#6E7E85_93.82%)] bg-clip-text text-transparent">The Problem</h2>

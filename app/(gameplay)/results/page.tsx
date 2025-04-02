@@ -30,7 +30,7 @@ const GameResultPage = () => {
           <p className="text-[1.5625rem] text-[#6E7E85] font-bold leading-[1.875rem]">
             <PartyPopper className="inline w-[3.125rem] h-[3.125rem] text-[#6E7E85] mr-[0.94rem]" /> You gained <span className="font-normal">{pointsGained}</span> points!
           </p>
-          <div className="flex-shrink-0 w-[22rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#6E7E85] sm:hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
+          <div className="flex-shrink-0 w-[22rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#A5B5B8] sm:hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
             handleNewGameSelection(gamemode);
           }}>
             {gamemode == "images" && (
@@ -55,7 +55,7 @@ const GameResultPage = () => {
             )}
           </div>
           <div className="flex flex-col gap-4 md:flex-row md:gap-[3.12rem]">
-            <div className="flex-shrink-0 w-[18.75rem] h-[4.6875rem] flex items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#6E7E85] sm:hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
+            <div className="flex-shrink-0 w-[18.75rem] h-[4.6875rem] flex items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#A5B5B8] sm:hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
               if(gamemode == "images" || gamemode == "text") {
                 handleNewGameSelection("daily_challenge");
               } else if(gamemode == "daily_challenge") {
@@ -76,7 +76,7 @@ const GameResultPage = () => {
                 </>
               )}
             </div>
-            <div className="flex-shrink-0 w-[18.75rem] h-[4.6875rem] flex items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#6E7E85] sm:hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
+            <div className="flex-shrink-0 w-[18.75rem] h-[4.6875rem] flex items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#A5B5B8] sm:hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
               if(gamemode == "images" || gamemode == "daily_challenge") {
                 handleNewGameSelection("text");
               } else if(gamemode == "text") {

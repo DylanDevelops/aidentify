@@ -60,7 +60,7 @@ const LeaderboardPage = () => {
           <h1 className="text-[2.5rem] font-bold text-[hsla(198,_9%,_48%,_0.75)] pb-20">Leaderboard</h1>
           <div className="hidden md:flex flex-col items-center gap-y-[1.56rem]">
             <div className="flex flex-row gap-x-[1.56rem] items-end">
-              <div className="podium podium-1 w-[12.5rem] h-[12.5rem] rounded-[1.875rem] flex flex-col items-center relative">
+              <div className="podium podium-1 w-[12.5rem] h-[12.5rem] rounded-[1.875rem]  border-[5px] border-solid border-[#A5B5B8] flex flex-col items-center relative">
                 <div className="absolute top-[-1.5rem] text-[2rem] font-bold text-[hsla(246,_16%,_39%,_0.75)] -translate-y-20">#2</div>
                 <div className="absolute w-[6.25rem] h-[6.25rem] -translate-y-1/2 avatar-frame rounded-full"></div>
                 <Avatar className="w-[5.25rem] h-[5.25rem] -translate-y-1/2">
@@ -75,7 +75,7 @@ const LeaderboardPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="podium podium-2 w-[12.5rem] h-[15.63rem] rounded-[1.875rem] flex flex-col items-center relative">
+              <div className="podium podium-2 w-[12.5rem] h-[15.63rem] rounded-[1.875rem] border-[5px] border-solid border-[#A5B5B8] flex flex-col items-center relative">
                 <div className="absolute top-[-1.5rem] text-[2rem] font-bold text-[hsla(246,_16%,_39%,_0.75)] -translate-y-20">#1</div>
                 <div className="absolute w-[6.25rem] h-[6.25rem] -translate-y-1/2 avatar-frame rounded-full"></div>               <Avatar className="w-[5.25rem] h-[5.25rem] -translate-y-1/2">
                   <AvatarImage src={topUsers.profilePictures[0]} />
@@ -89,7 +89,7 @@ const LeaderboardPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="podium podium-3 w-[12.5rem] h-[9.38rem] rounded-[1.875rem] flex flex-col items-center relative">
+              <div className="podium podium-3 w-[12.5rem] h-[9.38rem] rounded-[1.875rem]  border-[5px] border-solid border-[#A5B5B8] flex flex-col items-center relative">
                 <div className="absolute top-[-1.5rem] text-[2rem] font-bold text-[hsla(246,_16%,_39%,_0.75)] -translate-y-20">#3</div>
                 <div className="absolute w-[6.25rem] h-[6.25rem] -translate-y-1/2 avatar-frame rounded-full"></div>
                 <Avatar className="w-[5.25rem] h-[5.25rem] -translate-y-1/2">
@@ -105,7 +105,7 @@ const LeaderboardPage = () => {
                 </div>
               </div>
             </div>
-            <div className="podium podium-4 w-full h-[4.38rem] rounded-[1.875rem] flex justify-center items-center">
+            <div className="podium podium-4 w-full h-[4.38rem] rounded-[1.875rem] flex justify-center items-center border-[3px] border-solid border-[#AFBABD]">
               {!isAuthenticated && !isLoading && (
                 <p className="font-bold text-[1.5625rem] text-[#6E7E85]">Create an account to save your score!</p>
               )}
