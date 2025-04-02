@@ -167,7 +167,7 @@ export const Navbar = () => {
                   <CircleHelp className="text-[#6E7E85] font-[400] cursor-pointer" />
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:rounded-[1.875rem] p-10">
+              <DialogContent className="sm:rounded-[1.6rem] p-10">
                 <div className="space-y-5">
                   <DialogHeader>
                     <h1 className="font-bold text-[1.875rem] text-[#6E7E85]">How to Play</h1>
