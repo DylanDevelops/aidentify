@@ -11,7 +11,7 @@
 		"lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
 	},
 	"dependencies": {
-		"@clerk/clerk-react": "^5.11.1",
+		"@clerk/clerk-react": "^5.25.5",
 		"@clerk/nextjs": "^6.12.12",
 		"@next/third-parties": "^15.0.3",
 		"@radix-ui/react-avatar": "^1.1.1",
@@ -26,7 +26,7 @@
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
 		"cmdk": "^1.0.0",
-		"convex": "^1.21.0",
+		"convex": "^1.22.0",
 		"lucide-react": "^0.452.0",
 		"next": "^14.2.26",
 		"next-themes": "^0.3.0",
