@@ -65,7 +65,7 @@ export const Navbar = () => {
           <div className="ml-auto pt-6 pr-6 pb-2 space-x-2 flex items-center">
             {!isAuthenticated  && !isLoading && !isAdminCheckLoading && (
               <SignInButton>
-                <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[700] w-[6.25rem] h-[3.125rem] text-lg rounded-[3.125rem]">
+                <Button variant="default_gradient" size="sm" className="text-[rgba(28,_15,_19,_0.50)] font-[700] w-[6.25rem] h-[3.125rem] text-lg rounded-[3.125rem] hover:scale-105 transition-transform duration-300">
                   Login
                 </Button>
               </SignInButton>
@@ -178,7 +178,7 @@ export const Navbar = () => {
                     <li className="text-[#6E7E85]">Use the hint below to help you decide.</li>
                     <li className="text-[#6E7E85]">As you play, you will get more hints to help you learn to identify AI generated images.</li>
                   </ul>
-                  <p className="text-[#6E7E85]"><span className="font-bold">Tip:</span> Try <span className="font-bold">Text Mode</span> or the <span className="font-bold">Daily Challenge</span> for additional practice! <span className="font-bold">Sign up</span> for an account to save your progress.</p>
+                  <p className="text-[#6E7E85]"><span className="font-bold">Tip:</span> Try <Link id="popup-link" href="https://playaidentify.com/play" className="font-bold hover:underline">Text Mode</Link> or the <Link id="popup-link" href="https://playaidentify.com/play" className="font-bold hover:underline">Daily Challenge</Link> for additional practice! <Link id="popup-link" href="https://playaidentify.com/waitlist" className="font-bold hover:underline">Sign up</Link> for an account to save your progress.</p>
                 </div>
               </DialogContent>
             </Dialog>
