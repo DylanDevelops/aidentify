@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
@@ -18,7 +18,7 @@ interface LogoProps {
 export const Logo = ({ clickable, href, showLogoText }: LogoProps) => {
   const logoContent = (
     <div className="flex items-center gap-x-2">
-      {/* <Image 
+      <Image 
         src="/logos/Wordmark-beta.svg"
         height="200"
         width="252" // TODO: Change back to 200 when out of beta
@@ -31,7 +31,7 @@ export const Logo = ({ clickable, href, showLogoText }: LogoProps) => {
         width="200"
         alt="Logo"
         className="hidden dark:block"
-      /> */}
+      />
       {showLogoText && (
         <p className={cn("font-semibold p-2", font.className)}>AIdentify</p>
       )}
