@@ -59,21 +59,6 @@ const AboutPage = () => {
               title="Design/Curriculum"
               noPfp
             />
-            <TeamCard
-              name="Cristian Melgoza"
-              title="Development"
-              noPfp
-            />
-            <TeamCard
-              name="Jack Flanagan"
-              title="Development"
-              noPfp
-            />
-            <TeamCard
-              name="Josh McCarthy"
-              title="Design/Curriculum"
-              noPfp
-            />
           </div>
         </section>
         <section className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
