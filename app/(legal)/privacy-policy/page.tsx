@@ -1,6 +1,6 @@
 import { FancyBackgroundGradient } from "@/components/fancy-background-gradient";
+import FancyLink from "@/components/fancy-link";
 import { Footer } from "@/components/footer";
-import Link from "next/link";
 
 const PrivacyPolicyPage = () => {
   return ( 
@@ -37,9 +37,7 @@ const PrivacyPolicyPage = () => {
             <h2 className="text-2xl">4. User Rights and Data Requests</h2>
             <p><span className="font-bold">Security Measures:</span> We implement best practices to protect user data, including encrypted password handling through Clerk. However, we do not access user passwords directly.</p>
             <p><span className="font-bold">Account Deletion:</span> You can delete your account directly by navigating to &quot;Account Settings &gt; Security &gt; Delete Account&quot;.</p>
-            <p><strong>Additional Requests:</strong> For other data-related requests, such as accessing or modifying your data, please contact us at <Link href="mailto:playaidentify@gmail.com" className="relative group text-muted-foreground hover:text-black">playaidentify@gmail.com
-              <span className="absolute left-0 bottom-[-3px] w-0 h-[2px] bg-black transition-all group-hover:w-full"></span>
-            </Link>.</p>
+            <p><strong>Additional Requests:</strong> For other data-related requests, such as accessing or modifying your data, please contact us at <FancyLink href="mailto:contact@playaidentify.com" openInNewTab className="text-muted-foreground hover:text-black">contact@playaidentify.com</FancyLink>.</p>
           </div>
 
           <div className="space-y-4">
@@ -54,9 +52,7 @@ const PrivacyPolicyPage = () => {
 
           <div className="space-y-4">
             <h2 className="text-2xl">7. Contact Information</h2>
-            <p>For any privacy-related questions, please contact us at: <Link href="mailto:playaidentify@gmail.com" className="relative group text-muted-foreground hover:text-black">playaidentify@gmail.com
-              <span className="absolute left-0 bottom-[-3px] w-0 h-[2px] bg-black transition-all group-hover:w-full"></span>
-            </Link></p>
+            <p>For any privacy-related questions, please contact us at: <FancyLink href="mailto:contact@playaidentify.com" openInNewTab className="text-muted-foreground hover:text-black">contact@playaidentify.com</FancyLink></p>
           </div>
         </div>
         <Footer />

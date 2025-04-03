@@ -15,7 +15,7 @@ export const Heading = () => {
     <div className="max-w-md space-y-4">
       <h1 className="text-[2.8125rem] text-[rgba(28,_15,_19,_0.75)] font-[700]">Learn to identify <span className="font-[400] text-[3.125rem] font-RussoOne bg-gradient-to-r from-[#565373] to-[#6E7E85] bg-clip-text text-transparent">AI</span></h1>
       <h3 className="text-[1.25rem] text-[rgba(28,_15,_19,_0.75)] font-[400]">
-        Through <span className="text-[#6E7E85] text-[1.25rem] font-[700]">images</span>, <span className="text-[#6A6884] text-[1.25rem] font-[700]">text</span>, and more, learn to identify <span className="text-[rgba(28,_15,_19,_0.75)] text-[1.25rem] font-[700]">AI generated content</span> in the real world!
+        Through <span className="text-[#6E7E85] text-[1.25rem] font-[700]">images</span>, <span className="text-[#6A6884] text-[1.25rem] font-[700]">text</span>, and more, learn to identify <span className="text-[rgba(28,_15,_19,_0.75)] text-[1.25rem] font-[700]">AI-generated material</span> in the real world!
       </h3>
       {!isAuthenticated && !isLoading && (
         <SignUpButton>
