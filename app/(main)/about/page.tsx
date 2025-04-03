@@ -57,7 +57,6 @@ const AboutPage = () => {
             <TeamCard
               name="Noslen Cruz-Muniz"
               title="Design/Curriculum"
-              noPfp
             />
           </div>
         </section>
