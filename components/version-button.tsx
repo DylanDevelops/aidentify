@@ -27,8 +27,8 @@ const VersionButton = () => {
 
   if(!version) {
     return (
-      <Link href="https://github.com/DylanDevelops/aidentify/releases" target="_blank">
-        <Button variant="ghost" className="text-muted-foreground">
+      <Link href="https://github.com/DylanDevelops/aidentify/releases" target="_blank" aria-label="Release Notes">
+        <Button variant="ghost" className="text-muted-foreground" aria-label="Release Notes">
           <Skeleton className="h-5 w-28" />
         </Button>
       </Link>
@@ -36,8 +36,8 @@ const VersionButton = () => {
   }
 
   return ( 
-    <Link href="https://github.com/DylanDevelops/aidentify/releases" target="_blank">
-      <Button variant="ghost" className="text-muted-foreground">
+    <Link href="https://github.com/DylanDevelops/aidentify/releases" target="_blank" aria-label="Release Notes">
+      <Button variant="ghost" className="text-muted-foreground" aria-label="Release Notes">
         <GitBranch className="w-5 h-5 mr-2" /> {version}
       </Button>
     </Link>

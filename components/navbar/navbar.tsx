@@ -132,7 +132,7 @@ export const Navbar = () => {
           <div className="flex md:hidden justify-start space-x-1 py-2 px-6">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" aria-label="Expand Page Navigator">
                   <Menu />
                 </Button>
               </DropdownMenuTrigger>
@@ -159,11 +159,11 @@ export const Navbar = () => {
             {isAuthenticated && (
               <Button variant="ghost" size="icon" onClick={() => {
                 openUserProfile();
-              }}><Settings className="text-[#6E7E85] font-[400] cursor-pointer" /></Button>
+              }} aria-label="User Settings"><Settings className="text-[#6E7E85] font-[400] cursor-pointer" /></Button>
             )}
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" aria-label="Help Popup">
                   <CircleHelp className="text-[#6E7E85] font-[400] cursor-pointer" />
                 </Button>
               </DialogTrigger>
@@ -184,14 +184,14 @@ export const Navbar = () => {
             </Dialog>
             <Button variant="ghost" size="icon" onClick={() => {
               router.push("/leaderboard");
-            }}><Trophy className={cn(
+            }} aria-label="Leaderboard Page"><Trophy className={cn(
                 "text-[#6E7E85] font-[400] cursor-pointer",
                 pathname === "/leaderboard" && "stroke-[3]"
               )} /></Button>
             {isCurrentUserAdmin && (
               <Button variant="ghost" size="icon" onClick={() => {
                 router.push("/admin");
-              }}><Fingerprint className={cn(
+              }} aria-label="Admin Dashboard"><Fingerprint className={cn(
                   "text-[#6E7E85] font-[400] cursor-pointer",
                   pathname === "/admin" && "stroke-[3]"
                 )} /></Button>

@@ -27,13 +27,13 @@ export const Footer = () => {
         </DropdownMenuContent>
       </DropdownMenu>
       <div className="flex-row gap-x-1 hidden sm:block">
-        <Link href="mailto:playaidentify@gmail.com">
-          <Button variant="ghost" size="icon">
+        <Link href="mailto:contact@playaidentify.com" aria-label="Email Address Contact">
+          <Button variant="ghost" size="icon" aria-label="Email Address Contact">
             <Mail className="text-muted-foreground w-5 h-5" />
           </Button>
         </Link>
-        <Link href="https://github.com/DylanDevelops/aidentify" target="_blank">
-          <Button variant="ghost" size="icon">
+        <Link href="https://github.com/DylanDevelops/aidentify" target="_blank" aria-label="GitHub Repository">
+          <Button variant="ghost" size="icon" aria-label="GitHub Repository">
             <Github className="text-muted-foreground w-5 h-5" />
           </Button>
         </Link>
