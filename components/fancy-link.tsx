@@ -16,7 +16,7 @@ const FancyLink: React.FC<FancyLinkProps> = ({ href, openInNewTab = false, child
       target={openInNewTab ? "_blank" : undefined} 
     >
       {children}
-      <span className="absolute left-0 bottom-[-3px] w-0 h-[2px] bg-black transition-all group-hover:w-full"></span>
+      <span className="absolute left-0 bottom-[-3px] w-0 h-[2px] bg-black rounded-full transition-all group-hover:w-full"></span>
     </Link>
   );
 };
