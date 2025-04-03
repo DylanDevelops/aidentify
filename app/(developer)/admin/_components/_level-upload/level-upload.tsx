@@ -38,12 +38,12 @@ const LevelUpload = () => {
   const createLevelWithImageIds = useMutation(api.levelUpload.createLevelWithImageIds);
 
   useEffect(() => {
-    if (!AIImage || !normalImage || !AIImageName || !normalImageName || !AIPrompt || !AIImageCopyrightCredit || !normalImageCopyrightCredit || !levelGroupName || !levelClassification) {
+    if (!AIImage || !normalImage || !AIImageName || !normalImageName || !AIPrompt || !AIImageCopyrightCredit || !normalImageCopyrightCredit || !levelGroupName || !levelClassification || (!levelHint1 && !levelHint2 && !levelHint3)) {
       setSubmitButtonDisabled(true);
     } else {
       setSubmitButtonDisabled(false);
     }
-  }, [AIPrompt, AIImage, normalImage, AIImageName, normalImageName, AIImageCopyrightCredit, normalImageCopyrightCredit, levelGroupName, levelClassification]);
+  }, [AIPrompt, AIImage, normalImage, AIImageName, normalImageName, AIImageCopyrightCredit, normalImageCopyrightCredit, levelGroupName, levelClassification, levelHint1, levelHint2, levelHint3]);
 
   async function handleImageSubmission() {
     const aiNameInput = document.getElementById("ai-name") as HTMLInputElement;
