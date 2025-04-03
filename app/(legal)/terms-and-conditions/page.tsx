@@ -1,6 +1,6 @@
 import { FancyBackgroundGradient } from "@/components/fancy-background-gradient";
+import FancyLink from "@/components/fancy-link";
 import { Footer } from "@/components/footer";
-import Link from "next/link";
 
 const TermsAndConditionsPage = () => {
   return ( 
@@ -50,9 +50,7 @@ const TermsAndConditionsPage = () => {
 
           <div className="space-y-4">
             <h2 className="text-2xl">7. Contact Information</h2>
-            <p>If you have questions about these terms, please contact us at: <Link href="mailto:playaidentify@gmail.com" className="relative group text-muted-foreground hover:text-black">playaidentify@gmail.com
-              <span className="absolute left-0 bottom-[-3px] w-0 h-[2px] bg-black transition-all group-hover:w-full"></span>
-            </Link></p>
+            <p>If you have questions about these terms, please contact us at: <FancyLink href="mailto:contact@playaidentify.com" openInNewTab className="text-muted-foreground hover:text-black">contact@playaidentify.com</FancyLink></p>
           </div>
         </div>
         <Footer />
