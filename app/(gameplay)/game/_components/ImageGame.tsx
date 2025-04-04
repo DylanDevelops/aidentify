@@ -106,14 +106,16 @@ const ImageGame = () => {
                 )}
               </div>
               <div className="w-[20rem] md:w-[25rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[#AFBABD] bg-[linear-gradient(101deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(187,_186,_198,_0.85)_100%)] overflow-hidden relative select-none transition-transform duration-300">
-                {/* TODO: fix p-[4.5rem] should be for the div below. */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-[2rem] gap-6 overflow-y-auto min-h-[18.75rem]">
+                <div className="absolute inset-0 flex flex-col items-center p-[2rem] gap-6 overflow-y-auto max-h-full">
                   <h1 className="font-bold text-[rgba(28,_15,_19,_0.75)] text-[1.25rem]">AI Image Prompt</h1>
-                  <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">{generationPrompt}</p>
+                  <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">
+                    {generationPrompt}
+                  </p>
                 </div>
               </div>
+
               <div className="w-[20rem] md:w-[25rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[#AFBABD] bg-[linear-gradient(101deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(187,_186,_198,_0.85)_100%)] overflow-hidden relative select-none transition-transform duration-300">
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-[4.5rem] gap-6">
+                <div className="absolute inset-0 flex flex-col items-center p-[2rem] gap-6 overflow-y-auto max-h-full">
                   <h1 className="font-bold text-[rgba(28,_15,_19,_0.75)] text-[1.25rem]">AI Giveaways</h1>
                   <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">
                     <ul className="list-disc list-inside">
