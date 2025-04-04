@@ -14,6 +14,7 @@ interface IGameContext {
   currentImageIds: Id<"images">[] | null;
   correctImageId: Id<"images"> | null;
   correctImageSrcUrl: string | null;
+  incorrectImageSrcUrl: string | null;
   copyrightInfo: string | null;
   generationPrompt: string | null;
   classification: string | null;
@@ -49,6 +50,7 @@ export const GameProvider = ({
   const [currentImageSrcUrls, setCurrentImageSrcUrls] = useState<string[]>([]);
   const [currentImageIds, setCurrentImageIds] = useState<Id<"images">[]>([]);
   const [correctImageSrcUrl, setCorrectImageSrcUrl] = useState<string | null>(null);
+  const [incorrectImageSrcUrl, setIncorrectImageSrcUrl] = useState<string | null>(null);
   const [copyrightInfo, setCopyrightInfo] = useState<string | null>(null);
   const [generationPrompt, setGenerationPrompt] = useState<string | null>(null);
   const [classification, setClassification] = useState<string | null>(null);
@@ -112,6 +114,7 @@ export const GameProvider = ({
 
       setCorrectImageId(result.correctImageId);
       setCorrectImageSrcUrl(currentImageSrcUrls[currentImageIds.findIndex(id => id === result.correctImageId)]);
+      setIncorrectImageSrcUrl(currentImageSrcUrls.find((_, index) => currentImageIds[index] !== result.correctImageId) || null);
       setCopyrightInfo(null); // TODO
       setGenerationPrompt(result.aiImagePrompt!);
       setClassification(result.classification);
@@ -157,6 +160,7 @@ export const GameProvider = ({
       setImageHasBeenSelected(false);
       setCorrectImageId(null);
       setCorrectImageSrcUrl(null);
+      setIncorrectImageSrcUrl(null);
       setCopyrightInfo(null);
       setGenerationPrompt(null);
       setClassification(null);
@@ -187,6 +191,7 @@ export const GameProvider = ({
         currentImageIds,
         correctImageId,
         correctImageSrcUrl,
+        incorrectImageSrcUrl,
         copyrightInfo,
         generationPrompt,
         classification,
@@ -216,6 +221,7 @@ export const GameProvider = ({
       currentImageIds,
       correctImageId,
       correctImageSrcUrl,
+      incorrectImageSrcUrl,
       copyrightInfo,
       generationPrompt,
       classification,
