@@ -12,6 +12,7 @@ const ImageGame = () => {
     currentImageSrcUrls,
     currentImageIds,
     correctImageSrcUrl,
+    incorrectImageSrcUrl,
     generationPrompt,
     hints,
     wasCorrect,
@@ -96,24 +97,21 @@ const ImageGame = () => {
                   <>
                     <Image src={correctImageSrcUrl!} layout="fill" objectFit="cover" draggable={false} alt="Image Option" className="absolute inset-0 w-full h-full object-cover" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      {wasCorrect ? (
-                        <Check className="w-[15rem] h-[15rem] text-[#E2E2E2] drop-shadow-2xl" style={{ filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))' }} />
-                      ) : (
-                        <X className="w-[15rem] h-[15rem] text-[#E2E2E2] drop-shadow-2xl" style={{ filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))' }} />
-                      )}
+                      <Check className="w-[15rem] h-[15rem] text-[#E2E2E2] drop-shadow-2xl" style={{ filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))' }} />
                     </div>
                   </>
                 )}
               </div>
-              <div className="w-[20rem] md:w-[25rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[#AFBABD] bg-[linear-gradient(101deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(187,_186,_198,_0.85)_100%)] overflow-hidden relative select-none transition-transform duration-300">
-                <div className="absolute inset-0 flex flex-col items-center p-[2rem] gap-6 overflow-y-auto max-h-full">
-                  <h1 className="font-bold text-[rgba(28,_15,_19,_0.75)] text-[1.25rem]">AI Image Prompt</h1>
-                  <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">
-                    {generationPrompt}
-                  </p>
+              {wasCorrect && (
+                <div className="w-[20rem] md:w-[25rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[#AFBABD] bg-[linear-gradient(101deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(187,_186,_198,_0.85)_100%)] overflow-hidden relative select-none transition-transform duration-300">
+                  <div className="absolute inset-0 flex flex-col items-center p-[2rem] gap-6 overflow-y-auto max-h-full">
+                    <h1 className="font-bold text-[rgba(28,_15,_19,_0.75)] text-[1.25rem]">AI Image Prompt</h1>
+                    <p className="font-normal text-[rgba(28,_15,_19,_0.50)] text-[1.25rem]">
+                      {generationPrompt}
+                    </p>
+                  </div>
                 </div>
-              </div>
-
+              )}
               <div className="w-[20rem] md:w-[25rem] h-[18.75rem] rounded-[2.5rem] border-[5px] border-[#AFBABD] bg-[linear-gradient(101deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(187,_186,_198,_0.85)_100%)] overflow-hidden relative select-none transition-transform duration-300">
                 <div className="absolute inset-0 flex flex-col items-center p-[2rem] gap-6 overflow-y-auto max-h-full">
                   <h1 className="font-bold text-[rgba(28,_15,_19,_0.75)] text-[1.25rem]">AI Giveaways</h1>
@@ -126,6 +124,22 @@ const ImageGame = () => {
                   </p>
                 </div>
               </div>
+              {!wasCorrect && (
+                <div className="w-[20rem] h-[20rem] md:w-[25rem] md:h-[25rem] xl:w-[18.75rem] xl:h-[18.75rem] rounded-[2.5rem] border-[5px] border-[rgba(110,_126,_133)] overflow-hidden relative select-none transition-transform duration-300">
+                  {isLoading ? (
+                    <div className="flex items-center justify-center w-full h-full">
+                      <Loader2 className="w-1/2 h-1/2 animate-spin" />
+                    </div>
+                  ) : (
+                    <>
+                      <Image src={incorrectImageSrcUrl!} layout="fill" objectFit="cover" draggable={false} alt="Image Option" className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <X className="w-[15rem] h-[15rem] text-[#E2E2E2] drop-shadow-2xl" style={{ filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))' }} />
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
             <Button variant="default_gradient" className="font-[400] w-[10.9375rem] h-[3.125rem] text-[rgba(28,_15,_19,_0.50)] text-lg rounded-[3.125rem]" onClick={() => {
               handleNextRound();
