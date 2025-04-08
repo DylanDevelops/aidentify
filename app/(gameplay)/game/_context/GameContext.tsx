@@ -28,6 +28,7 @@ interface IGameContext {
   nextRound: () => void;
   scoreAwarded: number | null;
   isLoading: boolean;
+  isLoadingResults: boolean;
   globalAccuracy: number;
 }
 
@@ -68,6 +69,7 @@ export const GameProvider = ({
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [scoreAwarded, setScoreAwarded] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingResults, setIsLoadingResults] = useState(false);
   const [globalAccuracy, setGlobalAccuracy] = useState(0);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -82,14 +84,14 @@ export const GameProvider = ({
   useEffect(() => {
     const fetchLevels = async () => {
       if(searchParams.get("gamemode") === "daily_challenge") {
-        if(hasUserPlayedDailyChallengeToday(user?.lastDailyChallengeCompletion)) {
+        if(hasUserPlayedDailyChallengeToday(user?.lastDailyChallengeCompletion) && !isLoadingResults) {
           router.push("/play");
         }
       }
     };
 
     fetchLevels();
-  }, [router, searchParams, user?.lastDailyChallengeCompletion]);
+  }, [isLoadingResults, router, searchParams, user?.lastDailyChallengeCompletion]);
 
   useEffect(() => {
     const fetchLevels = async () => {
@@ -166,7 +168,8 @@ export const GameProvider = ({
   const nextRound = async () => {
     const nextRoundNumber = currentRound + 1;
 
-    if(nextRoundNumber > levels.length) {      
+    if(nextRoundNumber > levels.length) {
+      setIsLoadingResults(true);
       let updatedScore = BigInt(score);
 
       if(user) {
@@ -242,6 +245,7 @@ export const GameProvider = ({
         nextRound,
         scoreAwarded,
         isLoading,
+        isLoadingResults,
         globalAccuracy
       }}>
         {children}
@@ -272,6 +276,7 @@ export const GameProvider = ({
       nextRound,
       scoreAwarded,
       isLoading,
+      isLoadingResults,
       globalAccuracy
     }}>
       {children}

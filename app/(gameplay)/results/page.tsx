@@ -54,7 +54,7 @@ const GameResultPage = () => {
     <>
       <div className="min-h-full flex flex-col">
         <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 pb-10">
-          <h1 className="text-[1.5625rem] text-[#6E7E85] font-bold">Congrats! You completed the round!</h1>
+          <h1 className="text-[1.5625rem] text-[#6E7E85] font-bold">Congrats! You completed the {gamemode == "daily_challenge" ? "daily challenge" : "level"}!</h1>
           <p className="text-[1.25rem] text-[#6E7E85] font-normal">You guessed {correct} out of {rounds} correct</p>
           <p className="text-[1.5625rem] text-[#6E7E85] font-bold leading-[1.875rem]">
             <PartyPopper className="inline w-[3.125rem] h-[3.125rem] text-[#6E7E85] mr-[0.94rem]" /> You gained <span className="font-normal">{pointsGained}</span> points!
