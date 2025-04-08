@@ -70,11 +70,11 @@ const LeaderboardPage = () => {
                 <div className="mt-[-1.5rem] text-center">
                   <p className="text-[#6E7E85] font-bold text-[1.25rem] pb-2">{truncate(topUsers.usernames[1])}</p>
                   <div className="flex gap-x-4 justify-center items-center text-[hsl(342,_30%,_8%)] opacity-70 font-bold">
-                    <div className="flex flex-row">
+                    <div className="flex flex-row justify-center items-center">
                       <PartyPopper className="w-5 h-5 mr-2" />
                       {topUsers.scores[1].toString()}
                     </div>
-                    <div className="flex flex-row">
+                    <div className="flex flex-row justify-center items-center">
                       <Flame className="w-5 h-5 mr-2 fill-[hsl(342,_30%,_8%)]" />
                       {topUsers.streaks[1].toString()}
                     </div>
@@ -90,11 +90,11 @@ const LeaderboardPage = () => {
                 <div className="mt-[-1.5rem] text-center">
                   <p className="text-[#6E7E85] font-bold text-[1.25rem] pb-2">{truncate(topUsers.usernames[0])}</p>
                   <div className="flex gap-x-4 justify-center items-center text-[hsl(342,_30%,_8%)] opacity-70 font-bold">
-                    <div className="flex flex-row">
+                    <div className="flex flex-row justify-center items-center">
                       <PartyPopper className="w-5 h-5 mr-2" />
                       {topUsers.scores[0].toString()}
                     </div>
-                    <div className="flex flex-row">
+                    <div className="flex flex-row justify-center items-center">
                       <Flame className="w-5 h-5 mr-2 fill-[hsl(342,_30%,_8%)]" />
                       {topUsers.streaks[0].toString()}
                     </div>
@@ -111,11 +111,11 @@ const LeaderboardPage = () => {
                 <div className="mt-[-1.5rem] text-center">
                   <p className="text-[#6E7E85] font-bold text-[1.25rem] pb-2">{truncate(topUsers.usernames[2])}</p>
                   <div className="flex gap-x-4 justify-center items-center text-[hsl(342,_30%,_8%)] opacity-70 font-bold">
-                    <div className="flex flex-row">
+                    <div className="flex flex-row justify-center items-center">
                       <PartyPopper className="w-5 h-5 mr-2" />
                       {topUsers.scores[2].toString()}
                     </div>
-                    <div className="flex flex-row">
+                    <div className="flex flex-row justify-center items-center">
                       <Flame className="w-5 h-5 mr-2 fill-[hsl(342,_30%,_8%)]" />
                       {topUsers.streaks[2].toString()}
                     </div>
