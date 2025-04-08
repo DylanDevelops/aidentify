@@ -1,5 +1,6 @@
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+import { hasUserPlayedDailyChallengeToday } from "@/hooks/use-daily-challenge-check";
 import { useUser } from "@clerk/clerk-react";
 import { useConvex, useMutation, useQuery } from "convex/react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -44,6 +45,7 @@ export const GameProvider = ({
   const clerkUser = useUser();
   const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
   const updateStreak = useMutation(api.users.updateStreak);
+  const finishDailyChallenge = useMutation(api.users.finishDailyChallenge);
 
   const [levels, setLevels] = useState<Id<"levels">[]>([]);
   const [currentRound, setCurrentRound] = useState(0);
@@ -79,14 +81,37 @@ export const GameProvider = ({
 
   useEffect(() => {
     const fetchLevels = async () => {
-      const levelIds = await convex.query(api.game.getRandomLevels, { cacheBuster, numOfLevels: 5n, seed: randomSeed });
+      if(searchParams.get("gamemode") === "daily_challenge") {
+        if(hasUserPlayedDailyChallengeToday(user?.lastDailyChallengeCompletion)) {
+          router.push("/play");
+        }
+      }
+    };
+
+    fetchLevels();
+  }, [router, searchParams, user?.lastDailyChallengeCompletion]);
+
+  useEffect(() => {
+    const fetchLevels = async () => {
+      let pseudoRandomSeed;
+      if(searchParams.get("gamemode") === "daily_challenge") {
+        const date = new Date();
+        const pstDate = new Date(date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+        const month = (pstDate.getMonth() + 1).toString().padStart(2, "0");
+        const day = pstDate.getDate().toString().padStart(2, "0");
+        const year = pstDate.getFullYear().toString();
+        pseudoRandomSeed = `${month}${day}${year}`;
+      } else {
+        pseudoRandomSeed = randomSeed;
+      }
+      const levelIds = await convex.query(api.game.getRandomLevels, { cacheBuster, numOfLevels: 5n, seed: pseudoRandomSeed });
       setLevels(levelIds);
       setCurrentRound(1);
       setCurrentLevel(levelIds[0]);
     };
 
     fetchLevels();
-  }, [convex, cacheBuster, randomSeed]);
+  }, [convex, cacheBuster, randomSeed, searchParams, router]);
 
   useEffect(() => {
     if(currentLevelId && imageSrcs && imageIds) {
@@ -142,14 +167,21 @@ export const GameProvider = ({
     const nextRoundNumber = currentRound + 1;
 
     if(nextRoundNumber > levels.length) {      
+      let updatedScore = BigInt(score);
+
       if(user) {
         updateStreak({ clerkId: user.clerkId });
+
+        if(searchParams.get("gamemode") == "daily_challenge" && !hasUserPlayedDailyChallengeToday(user.lastDailyChallengeCompletion)) {
+          finishDailyChallenge({ clerkId: user.clerkId });
+          updatedScore *= 2n;
+        }
       }
       
-      const endOfGameResult = await finishGame({ points: BigInt(score), userID: user?._id ?? undefined });
+      const endOfGameResult = await finishGame({ points: updatedScore, userID: user?._id ?? undefined });
 
       const query = new URLSearchParams({
-        gamemode: searchParams.get("gamemode") || "", // TODO: Change this based on actual gamemode in the future
+        gamemode: searchParams.get("gamemode") || "",
         correct: correctGuesses.toString(),
         rounds: levels.length.toString(),
         points: endOfGameResult.earnedPoints.toString(),

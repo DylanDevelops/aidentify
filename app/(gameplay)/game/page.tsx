@@ -36,7 +36,11 @@ const GamePage = () => {
   }
 
   if(gamemode === "daily_challenge") {
-    return <DailyChallengeGame />;
+    return (
+      <GameProvider>
+        <DailyChallengeGame />
+      </GameProvider>
+    );
   }
 
   return null;
