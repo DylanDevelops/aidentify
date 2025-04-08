@@ -102,6 +102,29 @@ export const deleteFromClerk = internalMutation({
 });
 
 /**
+ * Mutation to mark the completion of a daily challenge for a user.
+ *
+ * @param args - The arguments for the mutation.
+ * @param args.clerkId - The Clerk ID of the user completing the daily challenge.
+ * @throws {Error} If the user cannot be found using the provided Clerk ID.
+ * @returns {Promise<void>} A promise that resolves once the user's last daily challenge completion timestamp is updated.
+ */
+export const finishDailyChallenge = mutation({
+  args: {
+    clerkId: v.string(),
+  },
+  async handler(ctx, args) {
+    const user = await userByClerkId(ctx, args.clerkId);
+
+    if (!user) {
+      throw new Error("User could not be found!");
+    }
+
+    await ctx.db.patch(user._id, { lastDailyChallengeCompletion: new Date().getTime() });
+  },
+});
+
+/**
  * Retrieves the top 3 leaderboard entries based on user points.
  *
  * This query fetches the top users from the "users" table, ordered

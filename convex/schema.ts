@@ -12,6 +12,7 @@ export default defineSchema({
     picture: v.string(),
     currentStreak: v.int64(),
     lastPlayedTimestamp: v.optional(v.number()),
+    lastDailyChallengeCompletion: v.optional(v.number()),
   })
     .index("byClerkId", ["clerkId"])
     .index("byUsername", ["username"])
