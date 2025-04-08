@@ -122,11 +122,13 @@ export const getLeaderboardEntries = query({
       .take(3);
 
     const scores = topUsers.map((user) => user.points);
+    const streaks = topUsers.map((user) => user.currentStreak);
     const profilePictures = topUsers.map((user) => user.picture);
     const usernames = topUsers.map((user) => user.username);
 
     return {
       scores,
+      streaks,
       profilePictures,
       usernames,
     };
