@@ -6,7 +6,7 @@ import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import { Logo } from "../Logo";
 import { CircleHelp, Fingerprint, Flame, LogOut, Menu, Settings, Trophy } from "lucide-react";
 import { useConvexAuth, useQuery } from "convex/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import Link from "next/link";
@@ -50,6 +50,25 @@ export const Navbar = () => {
     }
   }, [clerkUser]);
 
+  const previousStreakRef = useRef<number | null>(null); // Persist streak across page loads
+  const [isAnimating, setIsAnimating] = useState(false);
+  const hasMounted = useRef(false);
+
+  useEffect(() => {
+    if (user?.currentStreak !== undefined) {
+      if (hasMounted.current) {
+        if (Number(user.currentStreak) !== previousStreakRef.current) {
+          setIsAnimating(true);
+          setTimeout(() => setIsAnimating(false), 500);
+          previousStreakRef.current = Number(user.currentStreak); // Update the ref
+        }
+      } else {
+        hasMounted.current = true;
+        previousStreakRef.current = Number(user.currentStreak); // Set the initial streak
+      }
+    }
+  }, [user?.currentStreak]);
+
   const pathname = usePathname();
 
   const leftPosition = `-${3 + (user?.currentStreak.toString().length || 1) * 0.5}rem`;
@@ -82,7 +101,9 @@ export const Navbar = () => {
                   <ProfileMenubarMenu>
                     <ProfileMenubarTrigger>
                       <div className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-[#B7CECE] to-[#BBBAC6] rounded-[3.125rem] border border-[rgba(110,_126,_133,_0.25)] p-1.5 flex items-center" style={{ left: leftPosition }}>
-                        <p className="mx-1 text-[1.25rem] text-[#1C0F13]">{user?.currentStreak.toString()}</p>
+                        <p className={`mx-1 text-[1.25rem] text-[#1C0F13] ${isAnimating ? "streak-tick" : ""}`}>
+                          {user?.currentStreak.toString()}
+                        </p>
                         <Flame className="h-6 w-6 text-[#1C0F13] fill-[#1C0F13]" />
                       </div>
                       <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11 relative top-[1.25px]">
