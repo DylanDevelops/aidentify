@@ -42,6 +42,7 @@ export const GameProvider = ({
 
   const clerkUser = useUser();
   const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
+  const updateStreak = useMutation(api.users.updateStreak);
 
   const [levels, setLevels] = useState<Id<"levels">[]>([]);
   const [currentRound, setCurrentRound] = useState(0);
@@ -140,6 +141,10 @@ export const GameProvider = ({
     const nextRoundNumber = currentRound + 1;
 
     if(nextRoundNumber > levels.length) {      
+      if(user) {
+        updateStreak({ clerkId: user.clerkId });
+      }
+      
       const endOfGameResult = await finishGame({ points: BigInt(score), userID: user?._id ?? undefined });
 
       const query = new URLSearchParams({

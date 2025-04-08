@@ -1,4 +1,4 @@
-import { internalMutation, query, QueryCtx } from "./_generated/server";
+import { internalMutation, mutation, query, QueryCtx } from "./_generated/server";
 import { UserJSON } from "@clerk/backend";
 import { v, Validator } from "convex/values";
 
@@ -101,43 +101,6 @@ export const deleteFromClerk = internalMutation({
   },
 });
 
-export const updateStreak = internalMutation({
-  args: { clerkId: v.string() },
-  async handler(ctx, { clerkId }) {
-    const user = await userByClerkId(ctx, clerkId);
-
-    if(user !== null) {
-      const today = new Date().toISOString().split('T')[0];
-      const lastParticipationDate = user.lastParticipationDate.split('T')[0];
-
-      if(lastParticipationDate === today) {
-        return;
-      }
-
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayStr = yesterday.toISOString().split('T')[0];
-
-      let newStreak = user.currentStreak;
-
-      if(lastParticipationDate === yesterdayStr) {
-        newStreak += 1n;
-      } else {
-        newStreak = 1n;
-      }
-
-      await ctx.db.patch(user._id, {
-        currentStreak: newStreak,
-        lastParticipationDate: new Date().toISOString(),
-      });
-    } else {
-      console.warn(
-        `Can't update Streak for user, there is none for Clerk user ID: ${clerkId}`,
-      );
-    }
-  },
-});
-
 /**
  * Retrieves the top 3 leaderboard entries based on user points.
  *
@@ -168,6 +131,91 @@ export const getLeaderboardEntries = query({
       usernames,
     };
   }
+});
+
+/**
+ * Mutation to update the user's streak based on their last played timestamp.
+ *
+ * This function calculates the user's current streak by comparing the last played
+ * timestamp with the current date in the PST timezone. If the user plays on consecutive
+ * days, their streak is incremented. If more than a day has passed since their last play,
+ * the streak is reset to 1. The updated streak and timestamp are then saved to the database.
+ *
+ * @mutation
+ * @param {Object} args - The arguments for the mutation.
+ * @param {string} args.clerkId - The Clerk ID of the user whose streak is being updated.
+ * @throws {Error} If the user cannot be found in the database.
+ * @returns {Promise<bigint>} The updated streak value.
+ */
+export const updateStreak = mutation({
+  args: {
+    clerkId: v.string(),
+  },
+  async handler(ctx, args) {
+    const user = await userByClerkId(ctx, args.clerkId);
+
+    if (!user) {
+      throw new Error("User could not be found!");
+    }
+
+    const now = new Date();
+    const nowPST = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+    const lastPlay = user.lastPlayedTimestamp ? new Date(user.lastPlayedTimestamp) : new Date(0);
+    const lastPlayPST = new Date(lastPlay.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+
+    // Reset time part of the dates to midnight PST
+    const nowMidnightPST = new Date(nowPST.getFullYear(), nowPST.getMonth(), nowPST.getDate());
+    const lastPlayMidnightPST = new Date(lastPlayPST.getFullYear(), lastPlayPST.getMonth(), lastPlayPST.getDate());
+
+    let newStreak = user.currentStreak ?? 0n;
+
+    // Check if the user has already played today
+    if (nowMidnightPST.getTime() !== lastPlayMidnightPST.getTime()) {
+      const timeSinceLastPlay = nowMidnightPST.getTime() - lastPlayMidnightPST.getTime();
+      if (timeSinceLastPlay <= 24 * 60 * 60 * 1000) {
+        // Played within the next full day, increment streak
+        newStreak += 1n;
+      } else {
+        // More than a full day, reset streak
+        newStreak = 1n;
+      }
+    }
+
+    await ctx.db.patch(user._id, { currentStreak: newStreak, lastPlayedTimestamp: now.getTime() });
+
+    return newStreak;
+  },
+});
+
+/**
+ * Resets the current streaks of inactive users to zero and clears their last played timestamp.
+ * 
+ * This mutation identifies users who have not played since midnight PST of the previous day
+ * and resets their `currentStreak` to `0` while setting their `lastPlayedTimestamp` to `undefined`.
+ * 
+ * @async
+ * @function
+ * @param {Object} ctx - The context object provided by the framework.
+ * @param {Object} ctx.db - The database interface for querying and updating user data.
+ * @returns {Promise<string>} A message indicating the number of users whose streaks were cleared.
+ */
+export const resetInactiveStreaks = internalMutation({
+  async handler(ctx) {
+    const now = new Date();
+    const nowPST = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+    const nowMidnightPST = new Date(nowPST.getFullYear(), nowPST.getMonth(), nowPST.getDate()).getTime();
+
+    const inactiveUsers = await ctx.db
+      .query("users")
+      .filter((q) => q.lt(q.field("lastPlayedTimestamp"), nowMidnightPST - 24 * 60 * 60 * 1000))
+      .collect();
+
+    for (const user of inactiveUsers) {
+      await ctx.db.patch(user._id, { currentStreak: 0n, lastPlayedTimestamp: undefined });
+    }
+
+    return `Cleared streaks for ${inactiveUsers.length} users.`;
+  },
 });
 
 /**
