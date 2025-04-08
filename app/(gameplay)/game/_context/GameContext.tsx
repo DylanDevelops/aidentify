@@ -2,7 +2,7 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useUser } from "@clerk/clerk-react";
 import { useConvex, useMutation, useQuery } from "convex/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface IGameContext {
@@ -39,6 +39,7 @@ export const GameProvider = ({
 }) => {
   const router = useRouter();
   const convex = useConvex();
+  const searchParams = useSearchParams();
 
   const clerkUser = useUser();
   const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
@@ -148,7 +149,7 @@ export const GameProvider = ({
       const endOfGameResult = await finishGame({ points: BigInt(score), userID: user?._id ?? undefined });
 
       const query = new URLSearchParams({
-        gamemode: "images", // TODO: Change this based on actual gamemode in the future
+        gamemode: searchParams.get("gamemode") || "", // TODO: Change this based on actual gamemode in the future
         correct: correctGuesses.toString(),
         rounds: levels.length.toString(),
         points: endOfGameResult.earnedPoints.toString(),

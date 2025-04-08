@@ -162,7 +162,15 @@ const ImageGame = () => {
             <Button variant="default_gradient" className="font-[400] w-[10.9375rem] h-[3.125rem] text-[rgba(28,_15,_19,_0.50)] text-lg rounded-[3.125rem] hover:scale-105 transition-transform duration-300" onClick={() => {
               handleNextRound();
             }}>
-              Next Image <ChevronRight className="stroke-[3]" />
+              {currentRound === levels.length ? (
+                <>
+                  Finish Game <Check className="ml-1 stroke-[3]" />
+                </>
+              ) : (
+                <>
+                  Next Image <ChevronRight className="stroke-[3]" />
+                </>
+              )}
             </Button>
             <p className="text-[1.25rem] text-[rgba(86,_83,_115,_0.75)] font-normal mb-4 flex flex-row align-middle justify-center items-center mt-10 md:mt-0">
               <ChevronLeft /> {currentRound} of {levels.length} <ChevronRight />
