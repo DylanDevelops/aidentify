@@ -83,15 +83,14 @@ export const GameProvider = ({
 
   useEffect(() => {
     const fetchLevels = async () => {
-      if(searchParams.get("gamemode") === "daily_challenge") {
-        if(hasUserPlayedDailyChallengeToday(user?.lastDailyChallengeCompletion) && !isLoadingResults) {
-          router.push("/play");
-        }
+      if (!user || (searchParams.get("gamemode") === "daily_challenge" && hasUserPlayedDailyChallengeToday(user.lastDailyChallengeCompletion) && !isLoadingResults)) {
+        router.push("/play");
+        return;
       }
     };
 
     fetchLevels();
-  }, [isLoadingResults, router, searchParams, user?.lastDailyChallengeCompletion]);
+  }, [isLoadingResults, router, searchParams, user]);
 
   useEffect(() => {
     const fetchLevels = async () => {
