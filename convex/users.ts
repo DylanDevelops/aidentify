@@ -124,8 +124,10 @@ export const finishDailyChallenge = mutation({
     }
 
     const now = new Date().getTime();
+
     await ctx.db.patch(user._id, {
       lastDailyChallengeCompletion: now,
+      lastPlayTimestamp: now,
     });
   },
 });
@@ -192,8 +194,8 @@ export const updateStreak = mutation({
 
     const now = new Date();
     const nowPST = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-    const lastPlay = user.lastDailyChallengeCompletion
-      ? new Date(user.lastDailyChallengeCompletion)
+    const lastPlay = user.lastPlayTimestamp
+      ? new Date(user.lastPlayTimestamp)
       : new Date(0);
     const lastPlayPST = new Date(lastPlay.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
 
@@ -217,7 +219,7 @@ export const updateStreak = mutation({
 
     await ctx.db.patch(user._id, {
       currentStreak: newStreak,
-      lastDailyChallengeCompletion: now.getTime(),
+      lastPlayTimestamp: now.getTime(),
     });
 
     return newStreak;
