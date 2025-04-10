@@ -26,7 +26,7 @@
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
 		"cmdk": "^1.0.0",
-		"convex": "^1.22.0",
+		"convex": "^1.23.0",
 		"lucide-react": "^0.452.0",
 		"next": "^14.2.26",
 		"next-themes": "^0.3.0",
