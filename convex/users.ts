@@ -51,7 +51,7 @@ export const upsertFromClerk = internalMutation({
         points: 0n,
         picture: data.image_url,
         currentStreak: 0n,
-        lastParticipationDate: new Date().toISOString(),
+        lastPlayTimestamp: Date.now(),
       };
             
       await ctx.db.insert("users", userAttributes);
