@@ -17,6 +17,7 @@ import { useAdminCheck } from "@/hooks/use-admin-check";
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "../ui/dialog";
 
 import "./navbar.css";
+import { canUserIncreaseStreak } from "@/hooks/use-daily-challenge-check";
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -104,7 +105,11 @@ export const Navbar = () => {
                         <p className={`mx-1 text-[1.25rem] text-[#1C0F13] ${isAnimating ? "streak-tick" : ""}`}>
                           {user?.currentStreak.toString()}
                         </p>
-                        <Flame className="h-6 w-6 text-[#1C0F13] fill-[#1C0F13]" />
+                        <Flame className={
+                          cn(
+                            "h-6 w-6 text-[#1C0F13]",
+                            !canUserIncreaseStreak(user.lastPlayTimestamp) ? "fill-[#1C0F13]" : ""
+                          )} />
                       </div>
                       <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11 relative top-[1.25px]">
                         <AvatarImage src={user?.picture} />
