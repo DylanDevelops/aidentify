@@ -11,6 +11,7 @@ export default defineSchema({
     points: v.int64(),
     picture: v.string(),
     currentStreak: v.int64(),
+    lastPlayTimestamp: v.optional(v.number()),
     lastDailyChallengeCompletion: v.optional(v.number()),
   })
     .index("byClerkId", ["clerkId"])
