@@ -102,12 +102,15 @@ export const deleteFromClerk = internalMutation({
 });
 
 /**
- * Mutation to mark the completion of a daily challenge for a user.
+ * Marks the daily challenge as completed for a user identified by their Clerk ID.
  *
- * @param args - The arguments for the mutation.
- * @param args.clerkId - The Clerk ID of the user completing the daily challenge.
- * @throws {Error} If the user cannot be found using the provided Clerk ID.
- * @returns {Promise<void>} A promise that resolves once the user's last daily challenge completion timestamp is updated.
+ * @mutation
+ * @param {Object} args - The arguments for the mutation.
+ * @param {string} args.clerkId - The Clerk ID of the user completing the daily challenge.
+ * @throws {Error} If the user cannot be found.
+ * @async
+ * @handler
+ * Updates the `lastDailyChallengeCompletion` timestamp for the user in the database.
  */
 export const finishDailyChallenge = mutation({
   args: {
@@ -120,7 +123,10 @@ export const finishDailyChallenge = mutation({
       throw new Error("User could not be found!");
     }
 
-    await ctx.db.patch(user._id, { lastDailyChallengeCompletion: new Date().getTime() });
+    const now = new Date().getTime();
+    await ctx.db.patch(user._id, {
+      lastDailyChallengeCompletion: now,
+    });
   },
 });
 
@@ -158,19 +164,20 @@ export const getLeaderboardEntries = query({
   }
 });
 
+
 /**
- * Mutation to update the user's streak based on their last played timestamp.
+ * Mutation to update a user's daily challenge streak.
  *
- * This function calculates the user's current streak by comparing the last played
- * timestamp with the current date in the PST timezone. If the user plays on consecutive
- * days, their streak is incremented. If more than a day has passed since their last play,
- * the streak is reset to 1. The updated streak and timestamp are then saved to the database.
+ * This function calculates and updates the user's current streak based on their
+ * last daily challenge completion date. If the user completes the challenge on
+ * consecutive days, their streak is incremented. If more than a day has passed
+ * since their last completion, the streak is reset to 1.
  *
  * @mutation
- * @param {Object} args - The arguments for the mutation.
- * @param {string} args.clerkId - The Clerk ID of the user whose streak is being updated.
- * @throws {Error} If the user cannot be found in the database.
- * @returns {Promise<bigint>} The updated streak value.
+ * @param args - The arguments for the mutation.
+ * @param args.clerkId - The Clerk ID of the user whose streak is being updated.
+ * @throws {Error} If the user cannot be found using the provided Clerk ID.
+ * @returns The updated streak value as a BigInt.
  */
 export const updateStreak = mutation({
   args: {
@@ -185,7 +192,9 @@ export const updateStreak = mutation({
 
     const now = new Date();
     const nowPST = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-    const lastPlay = user.lastPlayedTimestamp ? new Date(user.lastPlayedTimestamp) : new Date(0);
+    const lastPlay = user.lastDailyChallengeCompletion
+      ? new Date(user.lastDailyChallengeCompletion)
+      : new Date(0);
     const lastPlayPST = new Date(lastPlay.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
 
     // Reset time part of the dates to midnight PST
@@ -206,23 +215,24 @@ export const updateStreak = mutation({
       }
     }
 
-    await ctx.db.patch(user._id, { currentStreak: newStreak, lastPlayedTimestamp: now.getTime() });
+    await ctx.db.patch(user._id, {
+      currentStreak: newStreak,
+      lastDailyChallengeCompletion: now.getTime(),
+    });
 
     return newStreak;
   },
 });
 
 /**
- * Resets the current streaks of inactive users to zero and clears their last played timestamp.
- * 
- * This mutation identifies users who have not played since midnight PST of the previous day
- * and resets their `currentStreak` to `0` while setting their `lastPlayedTimestamp` to `undefined`.
- * 
- * @async
- * @function
- * @param {Object} ctx - The context object provided by the framework.
- * @param {Object} ctx.db - The database interface for querying and updating user data.
- * @returns {Promise<string>} A message indicating the number of users whose streaks were cleared.
+ * Resets the current streaks of users who have been inactive for more than 24 hours
+ * since the last midnight in the Pacific Time Zone (PST).
+ *
+ * This mutation identifies users whose `lastDailyChallengeCompletion` timestamp
+ * is earlier than 24 hours before the most recent midnight PST. For each of these
+ * users, their `currentStreak` is reset to 0.
+ *
+ * @returns A string indicating the number of users whose streaks were cleared.
  */
 export const resetInactiveStreaks = internalMutation({
   async handler(ctx) {
@@ -232,11 +242,13 @@ export const resetInactiveStreaks = internalMutation({
 
     const inactiveUsers = await ctx.db
       .query("users")
-      .filter((q) => q.lt(q.field("lastPlayedTimestamp"), nowMidnightPST - 24 * 60 * 60 * 1000))
+      .filter((q) =>
+        q.lt(q.field("lastDailyChallengeCompletion"), nowMidnightPST - 24 * 60 * 60 * 1000)
+      )
       .collect();
 
     for (const user of inactiveUsers) {
-      await ctx.db.patch(user._id, { currentStreak: 0n, lastPlayedTimestamp: undefined });
+      await ctx.db.patch(user._id, { currentStreak: 0n });
     }
 
     return `Cleared streaks for ${inactiveUsers.length} users.`;
