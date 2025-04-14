@@ -13,12 +13,14 @@ interface MobileLeaderboardPodiumProps {
 
 const MobileLeaderboardPodium: React.FC<MobileLeaderboardPodiumProps> = ({ username, picture, score, streak, place }) => {
   return (
-    <div className={cn("podium w-full h-[4.38rem] rounded-[1.875rem] border-[5px] border-solid border-[#A5B5B8] flex items-center p-3 gap-x-2", `podium-${place}`)}>
-      <div className="absolute w-[6.25rem] h-[6.25rem] avatar-frame rounded-full"></div>
-      <Avatar className="w-[5.25rem] h-[5.25rem]">
-        <AvatarImage src={picture} />
-        <AvatarFallback>...</AvatarFallback>
-      </Avatar>
+    <div className={cn("podium w-full h-[4.38rem] rounded-[1.875rem] border-[5px] border-solid border-[#A5B5B8] flex items-center p-4 gap-x-1", `podium-${place}`)}>
+      <div className="flex flex-col justify-center items-center">
+        <div className="absolute w-[6.25rem] h-[6.25rem] avatar-frame rounded-full"></div>
+        <Avatar className="w-[5.25rem] h-[5.25rem]">
+          <AvatarImage src={picture} />
+          <AvatarFallback>...</AvatarFallback>
+        </Avatar>
+      </div>
       <div className="ml-4 flex flex-col justify-center flex-1">
         <p className="text-[#6E7E85] font-bold text-start text-[1.25rem]">{truncateUsername(username, 12)}</p>
         <div className="flex gap-x-4 items-center text-[hsl(342,_30%,_8%)] opacity-70 font-bold">
