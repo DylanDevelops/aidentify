@@ -1,6 +1,5 @@
 {
 	"name": "aidentify",
-	"version": "0.0.5-beta",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
