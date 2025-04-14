@@ -80,11 +80,10 @@ const PlayPage = () => {
               <ImagePlay className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
               <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center justify-center">Play Images <ChevronRight className="ml-1 stroke-[3]" /></p>
             </div>
-            <div className="flex-shrink-0 w-[22rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(56deg,_rgba(187,_186,_198,_0.85)_0%,_rgba(86,_83,_115,_0.72)_202.26%)] rounded-[2.5rem] border-[5px] border-solid border-[#9E9DAE] hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
-              handleNavigation("text");
-            }}>
+            <div className="flex-shrink-0 w-[22rem] h-[10.9375rem] flex flex-col items-center justify-center bg-[linear-gradient(56deg,_rgba(187,_186,_198,_0.85)_0%,_rgba(86,_83,_115,_0.72)_202.26%)] rounded-[2.5rem] border-[5px] border-solid border-[#9E9DAE] transition-transform duration-300 cursor-not-allowed">
               <TextSearch className="w-[3.125rem] h-[3.125rem] text-[#6f7c85]" />
-              <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center">Play Text <ChevronRight className="ml-1 stroke-[3]" /></p>
+              <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center">Play Text</p>
+              <p className="text-[rgba(28,_15,_19,_0.50)]">COMING SOON</p> 
             </div>
           </div>
         </div>

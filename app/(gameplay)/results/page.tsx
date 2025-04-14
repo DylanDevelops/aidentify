@@ -102,27 +102,29 @@ const GameResultPage = () => {
                 )}
               </div>
             )}
-            <div className="flex-shrink-0 w-[18.75rem] h-[4.6875rem] flex items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#A5B5B8] sm:hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
-              if(gamemode == "images" || gamemode == "daily_challenge") {
-                handleNewGameSelection("text");
-              } else if(gamemode == "text") {
-                handleNewGameSelection("images");
-              }
-            }}>
-              {(gamemode == "images" || gamemode == "daily_challenge") && (
-                <>
-                  <TextSearch className="w-[2.1875rem] h-[2.1875rem] text-[#6f7c85]" />
-                  <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center">Play Text <ChevronRight className="stroke-[3]" /></p>
-                </>
-              )}
+            {!(gamemode == "images" || gamemode == "daily_challenge") /* TODO: Add this back in when we introduce text mode */ && (
+              <div className="flex-shrink-0 w-[18.75rem] h-[4.6875rem] flex items-center justify-center bg-[linear-gradient(243deg,_rgba(183,_206,_206,_0.85)_0%,_rgba(110,_125,_133,_0.72)_155.46%)] rounded-[2.5rem] border-[5px] border-solid border-[#A5B5B8] sm:hover:scale-105 transition-transform duration-300 cursor-pointer" onClick={() => {
+                if(gamemode == "images" || gamemode == "daily_challenge") {
+                  handleNewGameSelection("text");
+                } else if(gamemode == "text") {
+                  handleNewGameSelection("images");
+                }
+              }}>
+                {(gamemode == "images" || gamemode == "daily_challenge") && (
+                  <>
+                    <TextSearch className="w-[2.1875rem] h-[2.1875rem] text-[#6f7c85]" />
+                    <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center">Play Text <ChevronRight className="stroke-[3]" /></p>
+                  </>
+                )}
 
-              {gamemode == "text" && (
-                <>
-                  <ImagePlay className="w-[2.1875rem] h-[2.1875rem] text-[#6f7c85]" />
-                  <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center">Play Images <ChevronRight className="stroke-[3]" /></p>
-                </>
-              )}
-            </div>
+                {gamemode == "text" && (
+                  <>
+                    <ImagePlay className="w-[2.1875rem] h-[2.1875rem] text-[#6f7c85]" />
+                    <p className="pt-2 text-center mr-2 ml-2 font-[700] text-[1.375rem] text-[rgba(28,_15,_19,_0.50)] flex items-center">Play Images <ChevronRight className="stroke-[3]" /></p>
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </div>
         <Footer />
