@@ -7,27 +7,16 @@ const MobileLeaderboard: React.FC<LeaderboardProps> = ({ topUsers, isAuthenticat
   return (
     <>
       <div className="flex md:hidden flex-col space-y-10 items-end w-full">
-        <MobileLeaderboardPodium
-          username={topUsers.usernames[0]}
-          picture={topUsers.profilePictures[0]}
-          score={topUsers.scores[0]}
-          streak={topUsers.streaks[0]}
-          place={1}
-        />
-        <MobileLeaderboardPodium
-          username={topUsers.usernames[1]}
-          picture={topUsers.profilePictures[1]}
-          score={topUsers.scores[1]}
-          streak={topUsers.streaks[1]}
-          place={2}
-        />
-        <MobileLeaderboardPodium
-          username={topUsers.usernames[2]}
-          picture={topUsers.profilePictures[2]}
-          score={topUsers.scores[2]}
-          streak={topUsers.streaks[2]}
-          place={3}
-        />
+        {topUsers.usernames.map((_, index) => (
+          <MobileLeaderboardPodium
+            key={index}
+            username={topUsers.usernames[index]}
+            picture={topUsers.profilePictures[index]}
+            score={topUsers.scores[index]}
+            streak={topUsers.streaks[index]}
+            place={index + 1}
+          />
+        ))}
       </div>
       <div className="md:hidden podium podium-4 w-full h-[4.38rem] rounded-[1.875rem] flex justify-center items-center border-[3px] border-solid border-[#AFBABD]">
         {!isAuthenticated && !isLoading && (
