@@ -22,7 +22,8 @@ const MobileLeaderboardPodium: React.FC<MobileLeaderboardPodiumProps> = ({ usern
         </Avatar>
       </div>
       <div className="ml-4 flex flex-col justify-center flex-1">
-        <p className="text-[#6E7E85] font-bold text-start text-[1.25rem]">{truncateUsername(username, 12)}</p>
+        <p className="max-[400px]:hidden block text-[#6E7E85] font-bold text-start text-[1.25rem]">{truncateUsername(username, 60)}</p>
+        <p className="max-[400px]:block hidden text-[#6E7E85] font-bold text-start text-[1.25rem]">{truncateUsername(username, 12)}</p>
         <div className="flex gap-x-4 items-center text-[hsl(342,_30%,_8%)] opacity-70 font-bold">
           <div className="flex flex-row items-center">
             <PartyPopper className="w-5 h-5 mr-2" />
