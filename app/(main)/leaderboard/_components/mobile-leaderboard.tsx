@@ -6,7 +6,7 @@ import MobileLeaderboardPodium from "./mobile-leaderboard-podium";
 const MobileLeaderboard: React.FC<LeaderboardProps> = ({ topUsers, isAuthenticated, isLoading, user }) => {
   return (
     <>
-      <div className="flex md:hidden flex-col gap-x-[1.56rem] items-end w-full space-y-10">
+      <div className="flex md:hidden flex-col gap-y-[1.56rem] items-end w-full space-y-10">
         <MobileLeaderboardPodium
           username={topUsers.usernames[0]}
           picture={topUsers.profilePictures[0]}
