@@ -43,7 +43,7 @@ const AboutPage = () => {
         </section>
         <section id="team" className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <h2 className="text-[1.875rem] font-bold bg-[linear-gradient(208deg,_#565373_10%,_#6E7E85_93.82%)] bg-clip-text text-transparent">The Team</h2>
-          <div className="flex flex-row flex-wrap gap-6 px-4 sm:px-8 md:px-16 max-w-[60rem] justify-center items-center">
+          <div className="flex flex-row flex-wrap gap-6 px-4 sm:px-8 md:px-16 max-w-[50rem] justify-center items-center">
             <TeamCard
               name="Dylan Ravel"
               title="Development Lead"
@@ -57,6 +57,10 @@ const AboutPage = () => {
             <TeamCard
               name="Noslen Cruz-Muniz"
               title="Curriculum Lead"
+            />
+            <TeamCard
+              name="Cristian Melgoza"
+              title="Development"
             />
           </div>
         </section>
