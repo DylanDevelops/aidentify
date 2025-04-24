@@ -62,6 +62,11 @@ const AboutPage = () => {
               name="Cristian Melgoza"
               title="Development"
             />
+            <TeamCard
+              name="Jack Flanagan"
+              title="Curriculum"
+              linkedInURL="https://www.linkedin.com/in/jack-flanagan-571399217/"
+            />
           </div>
         </section>
         <section className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
