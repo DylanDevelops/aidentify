@@ -83,7 +83,13 @@ export const GameProvider = ({
 
   useEffect(() => {
     const fetchLevels = async () => {
-      if (!user || (searchParams.get("gamemode") === "daily_challenge" && hasUserPlayedDailyChallengeToday(user.lastDailyChallengeCompletion) && !isLoadingResults)) {
+      const gamemode = searchParams.get("gamemode");
+  
+      if (
+        gamemode === "daily_challenge" &&
+        (!user || hasUserPlayedDailyChallengeToday(user.lastDailyChallengeCompletion)) &&
+        !isLoadingResults
+      ) {
         router.push("/play");
         return;
       }
