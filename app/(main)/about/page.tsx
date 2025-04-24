@@ -63,6 +63,11 @@ const AboutPage = () => {
               title="Development"
             />
             <TeamCard
+              name="Josh McCarthy"
+              title="Curriculum"
+              linkedInURL="https://www.linkedin.com/in/joshua-mccarthy-dev/"
+            />
+            <TeamCard
               name="Jack Flanagan"
               title="Curriculum"
               linkedInURL="https://www.linkedin.com/in/jack-flanagan-571399217/"
