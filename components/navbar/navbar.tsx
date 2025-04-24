@@ -105,11 +105,14 @@ export const Navbar = () => {
                         <p className={`mx-1 text-[1.25rem] text-[#1C0F13] ${isAnimating ? "streak-tick" : ""}`}>
                           {user?.currentStreak.toString()}
                         </p>
-                        <Flame className={
-                          cn(
+                        <Flame
+                          className={cn(
                             "h-6 w-6 text-[#1C0F13]",
-                            !canUserIncreaseStreak(user.lastPlayTimestamp) ? "fill-[#1C0F13]" : ""
-                          )} />
+                            Number(user?.currentStreak) === 0 || canUserIncreaseStreak(user.lastPlayTimestamp)
+                              ? ""
+                              : "fill-[#1C0F13]"
+                          )}
+                        />
                       </div>
                       <Avatar className="border-[3.5px] border-[#6E7E85] w-11 h-11 relative top-[1.25px]">
                         <AvatarImage src={user?.picture} />
