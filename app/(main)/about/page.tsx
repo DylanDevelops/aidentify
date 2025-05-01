@@ -46,30 +46,30 @@ const AboutPage = () => {
           <div className="flex flex-row flex-wrap gap-6 px-4 sm:px-8 md:px-16 max-w-[50rem] justify-center items-center">
             <TeamCard
               name="Dylan Ravel"
-              title="Development Lead"
+              title="Software Team Lead"
               linkedInURL="https://www.linkedin.com/in/dylanravel/"
             />
             <TeamCard
               name="Divi Newton"
-              title="Design Lead"
+              title="Design Team Lead"
               linkedInURL="https://www.linkedin.com/in/divinewton/"
             />
             <TeamCard
               name="Noslen Cruz-Muniz"
-              title="Curriculum Lead"
+              title="Curriculum Team Lead"
             />
             <TeamCard
               name="Cristian Melgoza"
-              title="Development"
+              title="Software Team"
             />
             <TeamCard
               name="Josh McCarthy"
-              title="Curriculum"
+              title="Curriculum Team"
               linkedInURL="https://www.linkedin.com/in/joshua-mccarthy-dev/"
             />
             <TeamCard
               name="Jack Flanagan"
-              title="Curriculum"
+              title="Curriculum Team"
               linkedInURL="https://www.linkedin.com/in/jack-flanagan-571399217/"
             />
           </div>
