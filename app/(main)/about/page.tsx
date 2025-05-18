@@ -47,7 +47,7 @@ const AboutPage = () => {
       <Confetti
         numberOfPieces={confettiPieces}
         width={pageDimensions.width}
-        height={pageDimensions.height}
+        height={pageDimensions.height - 800}
         gravity={0.3}
       />
       <div ref={containerRef} className="min-h-screen flex flex-col overflow-hidden">
