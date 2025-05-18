@@ -1,16 +1,71 @@
+"use client";
+
 import { FancyBackgroundGradient } from "@/components/fancy-background-gradient";
 import { Footer } from "@/components/footer";
 import Image from "next/image";
 import SolutionCard from "./_components/solution-card";
-import { GraduationCap, MousePointerClick, RotateCcw } from "lucide-react";
+import { GraduationCap, MousePointerClick, RotateCcw, Trophy } from "lucide-react";
 import TeamCard from "./_components/team-card";
 import FancyLink from "@/components/fancy-link";
+import Confetti from "react-confetti";
+import { useEffect, useRef, useState } from "react";
 
 const AboutPage = () => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [pageDimensions, setPageDimensions] = useState({ width: 0, height: 0 });
+  const [confettiPieces, setConfettiPieces] = useState(0);
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        setPageDimensions({
+          width: containerRef.current.offsetWidth,
+          height: containerRef.current.offsetHeight,
+        });
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, []);
+
+  const handleBannerClick = () => {
+    setConfettiPieces(0);
+    setTimeout(() => {
+      setConfettiPieces(200);
+      setTimeout(() => setConfettiPieces(0), 3000);
+    }, 0);
+  };
+
   return ( 
     <>
       <FancyBackgroundGradient />
-      <div className="min-h-full flex flex-col">
+      <Confetti
+        numberOfPieces={confettiPieces}
+        width={pageDimensions.width}
+        height={pageDimensions.height - 800}
+        gravity={0.3}
+      />
+      <div ref={containerRef} className="min-h-screen flex flex-col overflow-hidden">
+        <section className="flex flex-col items-center justify-center py-4">
+          <div
+            onClick={handleBannerClick}
+            style={{
+              background: "linear-gradient(358deg, rgba(187, 186, 198, 0.85) 0%, rgba(86, 83, 115, 0.72) 166.93%)",
+              border: "5px solid #9E9DAE"
+            }}
+            className="mx-10 rounded-xl px-6 py-4 flex flex-col lg:flex-row items-center gap-3 shadow-md sm:hover:scale-105 cursor-pointer transition-transform duration-300"
+          >
+            <Trophy className="text-[#565373]" />
+            <p className="text-lg font-bold text-[#565373] select-none text-center lg:text-start">
+              1st Place, Technology/Education Category — Chapman University Grand Challenges Initiative Showcase, Spring 2025
+            </p>
+          </div>
+        </section>
         <section id="home" className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 py-10">
           <Image src="/logos/AIdentify-Story.svg" width={100} height={100} unoptimized alt="AIdentify Logo for the About Page" className="w-[15rem] sm:w-[20rem] md:w-[32.48944rem]" />
           <p className="px-5 sm:px-20 md:px-48 text-[#565373] text-lg font-normal">AIdentify is a project of the <FancyLink href="https://www.chapman.edu/about/our-home/keck-center/gci/index.aspx" openInNewTab className="font-bold">Grand Challenges Initiative</FancyLink> at <FancyLink href="https://www.chapman.edu/" className="font-bold">Chapman University</FancyLink>, focused on teaching AI identification through repetition.</p>
