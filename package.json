@@ -37,6 +37,26 @@
 		"tailwind-merge": "^2.5.4",
 		"tailwindcss-animate": "^1.0.7"
 	},
+	"overrides": {
+		"eslint": {
+			"minimatch": ">=10.0.3"
+		},
+		"@eslint/config-array": {
+			"minimatch": ">=10.0.3"
+		},
+		"@eslint/eslintrc": {
+			"minimatch": ">=10.0.3"
+		},
+		"eslint-plugin-import": {
+			"minimatch": ">=10.0.3"
+		},
+		"eslint-plugin-jsx-a11y": {
+			"minimatch": ">=10.0.3"
+		},
+		"eslint-plugin-react": {
+			"minimatch": ">=10.0.3"
+		}
+	},
 	"devDependencies": {
 		"@types/node": "^20",
 		"@types/react": "^18",
