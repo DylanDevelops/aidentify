@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer";
 import { api } from "@/convex/_generated/api";
 import { hasUserPlayedDailyChallengeToday } from "@/hooks/use-daily-challenge-check";
 import { cn } from "@/lib/utils";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 import { useConvexAuth, useQuery } from "convex/react";
 import { CalendarCheck, CalendarClock, CalendarX, ChevronRight, ImagePlay, Loader2, TextSearch } from "lucide-react";
 import { useRouter } from "next/navigation";

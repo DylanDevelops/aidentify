@@ -3,7 +3,7 @@
 import { Footer } from "@/components/footer";
 import { api } from "@/convex/_generated/api";
 import { hasUserPlayedDailyChallengeToday } from "@/hooks/use-daily-challenge-check";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 import { useConvexAuth, useQuery } from "convex/react";
 import { CalendarClock, ChevronRight, ImagePlay, Loader2, PartyPopper, TextSearch } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";

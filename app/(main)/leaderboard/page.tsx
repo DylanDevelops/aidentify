@@ -7,7 +7,7 @@ import { Loader2, Medal } from "lucide-react";
 import "./leaderboard.css";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 import DesktopLeaderboard from "./_components/desktop-leaderboard";
 import MobileLeaderboard from "./_components/mobile-leaderboard";
 

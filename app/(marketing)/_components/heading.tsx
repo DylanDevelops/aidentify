@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { SignUpButton } from "@clerk/clerk-react";
+import { SignUpButton } from "@clerk/nextjs";
 import { useConvexAuth } from "convex/react";
 import { CopyCheck, GraduationCap, Save, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
