@@ -9,7 +9,6 @@ import { useUser } from "@clerk/clerk-react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { CalendarCheck, CalendarClock, CalendarX, ChevronRight, ImagePlay, Loader2, TextSearch } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const PlayPage = () => {
   const router = useRouter();
@@ -17,13 +16,7 @@ const PlayPage = () => {
   const clerkUser = useUser();
   const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
   const { isAuthenticated, isLoading } = useConvexAuth();
-  const [isUserLoading, setIsUserLoading] = useState(true);
-
-  useEffect(() => {
-    if(user !== undefined) {
-      setIsUserLoading(false);
-    }
-  }, [user]);
+  const isUserLoading = user === undefined;
 
   const handleNavigation = (gameMode: string) => {
     router.push(`/game?gamemode=${gameMode}`);

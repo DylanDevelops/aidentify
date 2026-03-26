@@ -6,13 +6,13 @@
 		"build": "next build",
 		"start": "next start",
 		"next:lint": "next lint",
-		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-		"lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
 	},
 	"dependencies": {
 		"@clerk/clerk-react": "^5.25.5",
 		"@clerk/nextjs": "^6.23.3",
-		"@next/third-parties": "^15.0.3",
+		"@next/third-parties": "^16.2.1",
 		"@radix-ui/react-avatar": "^1.1.1",
 		"@radix-ui/react-dialog": "^1.1.6",
 		"@radix-ui/react-dropdown-menu": "^2.1.2",
@@ -27,7 +27,7 @@
 		"cmdk": "^1.0.0",
 		"convex": "^1.23.0",
 		"lucide-react": "^0.452.0",
-		"next": "^14.2.32",
+		"next": "^16.2.1",
 		"next-themes": "^0.3.0",
 		"rand-seed": "^2.1.7",
 		"react": "^18",
@@ -37,13 +37,32 @@
 		"tailwind-merge": "^2.5.4",
 		"tailwindcss-animate": "^1.0.7"
 	},
+	"overrides": {
+		"eslint": {
+			"minimatch": ">=10.0.3"
+		},
+		"@eslint/config-array": {
+			"minimatch": ">=10.0.3"
+		},
+		"@eslint/eslintrc": {
+			"minimatch": ">=10.0.3"
+		},
+		"eslint-plugin-import": {
+			"minimatch": ">=10.0.3"
+		},
+		"eslint-plugin-jsx-a11y": {
+			"minimatch": ">=10.0.3"
+		},
+		"eslint-plugin-react": {
+			"minimatch": ">=10.0.3"
+		}
+	},
 	"devDependencies": {
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
-		"eslint": "^8.57.1",
+		"eslint": "^9.39.4",
 		"eslint-config-next": "16.0.3",
-		"eslint-plugin-react": "^7.37.1",
 		"postcss": "^8",
 		"tailwindcss": "^3.4.1",
 		"typescript": "^5"

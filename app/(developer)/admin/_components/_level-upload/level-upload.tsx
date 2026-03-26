@@ -7,7 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { LoaderCircle } from "lucide-react";
 import imageCompression from "browser-image-compression";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const LevelUpload = () => {
   const aiImageInput = useRef<HTMLInputElement>(null);
@@ -31,19 +31,11 @@ const LevelUpload = () => {
   const [levelHint3, setLevelHint3] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+  const submitButtonDisabled = !AIImage || !normalImage || !AIImageName || !normalImageName || !AIPrompt || !AIImageCopyrightCredit || !normalImageCopyrightCredit || !levelGroupName || !levelClassification || (!levelHint1 && !levelHint2 && !levelHint3);
 
   const generateUploadUrl = useMutation(api.levelUpload.generateUploadUrl);
   const createImageWithImageStorageID = useMutation(api.levelUpload.createImageWithImageStorageID);
   const createLevelWithImageIds = useMutation(api.levelUpload.createLevelWithImageIds);
-
-  useEffect(() => {
-    if (!AIImage || !normalImage || !AIImageName || !normalImageName || !AIPrompt || !AIImageCopyrightCredit || !normalImageCopyrightCredit || !levelGroupName || !levelClassification || (!levelHint1 && !levelHint2 && !levelHint3)) {
-      setSubmitButtonDisabled(true);
-    } else {
-      setSubmitButtonDisabled(false);
-    }
-  }, [AIPrompt, AIImage, normalImage, AIImageName, normalImageName, AIImageCopyrightCredit, normalImageCopyrightCredit, levelGroupName, levelClassification, levelHint1, levelHint2, levelHint3]);
 
   async function handleImageSubmission() {
     const aiNameInput = document.getElementById("ai-name") as HTMLInputElement;
@@ -66,7 +58,6 @@ const LevelUpload = () => {
       return;
     } else {
       setIsSubmitting(true);
-      setSubmitButtonDisabled(true);
 
       // create buffers for JPEG upload
       const aiImageBuffer = await AIImage.arrayBuffer();
@@ -157,7 +148,6 @@ const LevelUpload = () => {
       setLevelHint1("");
       setLevelHint2("");
       setLevelHint3("");
-      setSubmitButtonDisabled(false);
       setIsSubmitting(false);
 
       alert("Level Successfully Created!");
@@ -335,7 +325,7 @@ const LevelUpload = () => {
           <Button
             variant="default"
             className="w-full my-2"
-            disabled={submitButtonDisabled}
+            disabled={submitButtonDisabled || isSubmitting}
             onClick={handleImageSubmission}
           >
             Submit

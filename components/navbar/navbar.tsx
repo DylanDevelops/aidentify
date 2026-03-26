@@ -44,12 +44,7 @@ export const Navbar = () => {
   // const { theme, setTheme } = useTheme();
   const router = useRouter();
 
-  const [isUserLoading, setIsUserLoading] = useState(true);
-  useEffect(() => {
-    if(clerkUser !== undefined) {
-      setIsUserLoading(false);
-    }
-  }, [clerkUser]);
+  const isUserLoading = !clerkUser.isLoaded;
 
   const previousStreakRef = useRef<number | null>(null); // Persist streak across page loads
   const [isAnimating, setIsAnimating] = useState(false);
@@ -59,6 +54,7 @@ export const Navbar = () => {
     if (user?.currentStreak !== undefined) {
       if (hasMounted.current) {
         if (Number(user.currentStreak) !== previousStreakRef.current) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setIsAnimating(true);
           setTimeout(() => setIsAnimating(false), 500);
           previousStreakRef.current = Number(user.currentStreak); // Update the ref

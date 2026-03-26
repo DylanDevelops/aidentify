@@ -7,7 +7,6 @@ import { Loader2, Medal } from "lucide-react";
 import "./leaderboard.css";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import DesktopLeaderboard from "./_components/desktop-leaderboard";
 import MobileLeaderboard from "./_components/mobile-leaderboard";
@@ -18,18 +17,8 @@ const LeaderboardPage = () => {
   const user = useQuery(api.users.getUserByUsername, { username: clerkUser.user?.username ?? "" });
   const { isAuthenticated, isLoading } = useConvexAuth();
 
-  const [areEntriesLoading, setAreEntriesLoading] = useState(true);
-  const [isUserLoading, setIsUserLoading] = useState(true);
-
-  useEffect(() => {
-    if(topUsers !== undefined) {
-      setAreEntriesLoading(false);
-    }
-
-    if(user !== undefined) {
-      setIsUserLoading(false);
-    }
-  }, [topUsers, user]);
+  const areEntriesLoading = topUsers === undefined;
+  const isUserLoading = user === undefined;
 
   if(!topUsers || areEntriesLoading || isUserLoading || (!isAuthenticated && isLoading)) {
     return (
