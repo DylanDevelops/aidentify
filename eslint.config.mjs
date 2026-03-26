@@ -1,10 +1,13 @@
-const coreWebVitals = require("eslint-config-next/core-web-vitals");
-const typescript = require("eslint-config-next/typescript");
+import coreWebVitals from "eslint-config-next/core-web-vitals";
+import typescript from "eslint-config-next/typescript";
 
 /** @type {import("eslint").Linter.Config[]} */
-module.exports = [
+const config = [
   ...coreWebVitals,
   ...typescript,
+  {
+    ignores: ["convex/_generated/**"],
+  },
   {
     rules: {
       "indent": ["error", 2],
@@ -14,3 +17,5 @@ module.exports = [
     }
   }
 ];
+
+export default config;
