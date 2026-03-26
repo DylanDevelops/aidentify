@@ -207,7 +207,7 @@ export const Navbar = () => {
                     <li className="text-[#6E7E85]">Use the hint below to help you decide.</li>
                     <li className="text-[#6E7E85]">As you play, you will get more hints to help you learn to identify AI generated images.</li>
                   </ul>
-                  <p className="text-[#6E7E85]"><span className="font-bold">Tip:</span> Try <Link id="popup-link" href="https://playaidentify.com/play" className="font-bold hover:underline">Text Mode</Link> or the <Link id="popup-link" href="https://playaidentify.com/play" className="font-bold hover:underline">Daily Challenge</Link> for additional practice! <Link id="popup-link" href="https://playaidentify.com/waitlist" className="font-bold hover:underline">Sign up</Link> for an account to save your progress.</p>
+                  <p className="text-[#6E7E85]"><span className="font-bold">Tip:</span> Try <Link id="popup-link" href="https://aidentify.dylanravel.com/play" className="font-bold hover:underline">Text Mode</Link> or the <Link id="popup-link" href="https://aidentify.dylanravel.com/play" className="font-bold hover:underline">Daily Challenge</Link> for additional practice! <Link id="popup-link" href="https://aidentify.dylanravel.com/waitlist" className="font-bold hover:underline">Sign up</Link> for an account to save your progress.</p>
                 </div>
               </DialogContent>
             </Dialog>

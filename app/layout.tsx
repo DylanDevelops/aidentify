@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       }
     ]
   },
-  metadataBase: new URL("https://playaidentify.com"),
+  metadataBase: new URL("https://aidentify.dylanravel.com"),
   openGraph: {
     images: '/social-images/opengraph-image.png',
   },
