@@ -50,7 +50,7 @@ const TermsAndConditionsPage = () => {
 
           <div className="space-y-4">
             <h2 className="text-2xl">7. Contact Information</h2>
-            <p>If you have questions about these terms, please contact us at: <FancyLink href="mailto:contact@playaidentify.com" openInNewTab className="text-muted-foreground hover:text-black">contact@playaidentify.com</FancyLink></p>
+            <p>If you have questions about these terms, please contact us at: <FancyLink href="mailto:contact@dylanravel.com" openInNewTab className="text-muted-foreground hover:text-black">contact@dylanravel.com</FancyLink></p>
           </div>
         </div>
         <Footer />

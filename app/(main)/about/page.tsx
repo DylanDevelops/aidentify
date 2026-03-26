@@ -102,7 +102,7 @@ const AboutPage = () => {
             <TeamCard
               name="Dylan Ravel"
               title="Software Team Lead"
-              linkedInURL="https://www.linkedin.com/in/dylanravel/"
+              linkedInURL="https://dylanravel.com"
             />
             <TeamCard
               name="Divi Newton"
