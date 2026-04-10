@@ -26,7 +26,7 @@
 		"cmdk": "^1.0.0",
 		"convex": "^1.23.0",
 		"lucide-react": "^0.452.0",
-		"next": "^16.2.1",
+		"next": "^16.2.3",
 		"next-themes": "^0.3.0",
 		"rand-seed": "^2.1.7",
 		"react": "^18",
