@@ -10,7 +10,7 @@
 		"lint:fix": "eslint . --fix"
 	},
 	"dependencies": {
-		"@clerk/nextjs": "^7.0.7",
+		"@clerk/nextjs": "^7.2.1",
 		"@next/third-parties": "^16.2.1",
 		"@radix-ui/react-avatar": "^1.1.1",
 		"@radix-ui/react-dialog": "^1.1.6",
@@ -26,7 +26,7 @@
 		"cmdk": "^1.0.0",
 		"convex": "^1.23.0",
 		"lucide-react": "^0.452.0",
-		"next": "^16.2.3",
+		"next": "^16.2.6",
 		"next-themes": "^0.3.0",
 		"rand-seed": "^2.1.7",
 		"react": "^18",
